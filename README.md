@@ -19,16 +19,15 @@ Ceci est un projet consistant à concevoir un logiciel permettant de gérer les 
 
     Modèle physique de données :
 
-  ![Modèle physique de donnée](static/media/img/MPD.png)
+  ![Modèle physique de donnée](database/my_projeception.svg)
 
 ## Contenu
 
-A méditer
+#TODO
 
 ## Aperçu
 
-![Modèle physique de donnée](static/media/img/index.png)
-![Modèle physique de donnée](static/media/img/login.png)
+#TODO
 
 ## Responsive ?
 

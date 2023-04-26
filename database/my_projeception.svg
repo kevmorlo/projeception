@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE svg
+PUBLIC "-//W3C//DTD SVG 1.1//EN"
+       "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg viewBox="237 170 1084 603" width="847px" height="433px" xmlns="http://www.w3.org/2000/svg" version="1.1">
+   <line x1="397" y1="578" x2="407" y2="578" style="stroke:#0b0;stroke-width:1;"/>
+   <line x1="641" y1="280" x2="651" y2="280" style="stroke:#0b0;stroke-width:1;"/>
+   <line x1="407" y1="578" x2="641" y2="280" style="stroke:#0b0;stroke-width:1;"/>
+   <line x1="404.5" y1="578" x2="400.96446609407" y2="581.53553390593" style="stroke:#0b0;stroke-width:2;"/>
+   <line x1="404.5" y1="578" x2="400.96446609407" y2="574.46446609407" style="stroke:#0b0;stroke-width:2;"/>
+   <line x1="646" y1="280" x2="642.46446609407" y2="283.53553390593" style="stroke:#0b0;stroke-width:2;"/>
+   <line x1="646" y1="280" x2="642.46446609407" y2="276.46446609407" style="stroke:#0b0;stroke-width:2;"/>
+   <line x1="758" y1="420" x2="768" y2="420" style="stroke:#b0b;stroke-width:1;"/>
+   <line x1="983" y1="290" x2="993" y2="290" style="stroke:#b0b;stroke-width:1;"/>
+   <line x1="768" y1="420" x2="983" y2="290" style="stroke:#b0b;stroke-width:1;"/>
+   <line x1="765.5" y1="420" x2="761.96446609407" y2="423.53553390593" style="stroke:#b0b;stroke-width:2;"/>
+   <line x1="765.5" y1="420" x2="761.96446609407" y2="416.46446609407" style="stroke:#b0b;stroke-width:2;"/>
+   <line x1="988" y1="290" x2="984.46446609407" y2="293.53553390593" style="stroke:#b0b;stroke-width:2;"/>
+   <line x1="988" y1="290" x2="984.46446609407" y2="286.46446609407" style="stroke:#b0b;stroke-width:2;"/>
+   <line x1="758" y1="440" x2="768" y2="440" style="stroke:#0bf;stroke-width:1;"/>
+   <line x1="977" y1="522" x2="987" y2="522" style="stroke:#0bf;stroke-width:1;"/>
+   <line x1="768" y1="440" x2="977" y2="522" style="stroke:#0bf;stroke-width:1;"/>
+   <line x1="765.5" y1="440" x2="761.96446609407" y2="443.53553390593" style="stroke:#0bf;stroke-width:2;"/>
+   <line x1="765.5" y1="440" x2="761.96446609407" y2="436.46446609407" style="stroke:#0bf;stroke-width:2;"/>
+   <line x1="982" y1="522" x2="978.46446609407" y2="525.53553390593" style="stroke:#0bf;stroke-width:2;"/>
+   <line x1="982" y1="522" x2="978.46446609407" y2="518.46446609407" style="stroke:#0bf;stroke-width:2;"/>
+   <line x1="407" y1="235" x2="417" y2="235" style="stroke:#0b0;stroke-width:1;"/>
+   <line x1="407" y1="518" x2="397" y2="518" style="stroke:#0b0;stroke-width:1;"/>
+   <line x1="417" y1="235" x2="407" y2="518" style="stroke:#0b0;stroke-width:1;"/>
+   <line x1="414.5" y1="235" x2="410.96446609407" y2="238.53553390593" style="stroke:#0b0;stroke-width:2;"/>
+   <line x1="414.5" y1="235" x2="410.96446609407" y2="231.46446609407" style="stroke:#0b0;stroke-width:2;"/>
+   <line x1="402" y1="518" x2="405.53553390593" y2="521.53553390593" style="stroke:#0b0;stroke-width:2;"/>
+   <line x1="402" y1="518" x2="405.53553390593" y2="514.46446609407" style="stroke:#0b0;stroke-width:2;"/>
+   <line x1="407" y1="215" x2="417" y2="215" style="stroke:#0bf;stroke-width:1;"/>
+   <line x1="641" y1="280" x2="651" y2="280" style="stroke:#0bf;stroke-width:1;"/>
+   <line x1="417" y1="215" x2="641" y2="280" style="stroke:#0bf;stroke-width:1;"/>
+   <line x1="414.5" y1="215" x2="410.96446609407" y2="218.53553390593" style="stroke:#0bf;stroke-width:2;"/>
+   <line x1="414.5" y1="215" x2="410.96446609407" y2="211.46446609407" style="stroke:#0bf;stroke-width:2;"/>
+   <line x1="646" y1="280" x2="642.46446609407" y2="283.53553390593" style="stroke:#0bf;stroke-width:2;"/>
+   <line x1="646" y1="280" x2="642.46446609407" y2="276.46446609407" style="stroke:#0bf;stroke-width:2;"/>
+   <rect width="76" height="20" x="993" y="260" style="fill:#007;stroke:black;"/>
+   <text width="76" height="20" x="998" y="274" style="fill:#fff;" font-family="Arial" font-size="16px"> categorie</text>
+   <rect width="76" height="20" x="993" y="280" style="fill:#aea;stroke:black;"/>
+   <text width="76" height="20" x="998" y="294" style="fill:black;" font-family="Arial" font-size="16px">id</text>
+   <rect width="76" height="20" x="993" y="300" style="fill:none;stroke:black;"/>
+   <text width="76" height="20" x="998" y="314" style="fill:black;" font-family="Arial" font-size="16px">nom</text>
+   <rect width="99" height="20" x="298" y="488" style="fill:#007;stroke:black;"/>
+   <text width="99" height="20" x="303" y="502" style="fill:#fff;" font-family="Arial" font-size="16px"> projet</text>
+   <rect width="99" height="20" x="298" y="508" style="fill:#aea;stroke:black;"/>
+   <text width="99" height="20" x="303" y="522" style="fill:black;" font-family="Arial" font-size="16px">id</text>
+   <rect width="99" height="20" x="298" y="528" style="fill:none;stroke:black;"/>
+   <text width="99" height="20" x="303" y="542" style="fill:black;" font-family="Arial" font-size="16px">titre</text>
+   <rect width="99" height="20" x="298" y="548" style="fill:none;stroke:black;"/>
+   <text width="99" height="20" x="303" y="562" style="fill:black;" font-family="Arial" font-size="16px">description</text>
+   <rect width="99" height="20" x="298" y="568" style="fill:none;stroke:black;"/>
+   <text width="99" height="20" x="303" y="582" style="fill:black;" font-family="Arial" font-size="16px">Utilisateur_id</text>
+   <rect width="48" height="20" x="987" y="492" style="fill:#007;stroke:black;"/>
+   <text width="48" height="20" x="992" y="506" style="fill:#fff;" font-family="Arial" font-size="16px"> statut</text>
+   <rect width="48" height="20" x="987" y="512" style="fill:#aea;stroke:black;"/>
+   <text width="48" height="20" x="992" y="526" style="fill:black;" font-family="Arial" font-size="16px">id</text>
+   <rect width="48" height="20" x="987" y="532" style="fill:none;stroke:black;"/>
+   <text width="48" height="20" x="992" y="546" style="fill:black;" font-family="Arial" font-size="16px">nom</text>
+   <rect width="107" height="20" x="651" y="250" style="fill:#007;stroke:black;"/>
+   <text width="107" height="20" x="656" y="264" style="fill:#fff;" font-family="Arial" font-size="16px"> utilisateur</text>
+   <rect width="107" height="20" x="651" y="270" style="fill:#aea;stroke:black;"/>
+   <text width="107" height="20" x="656" y="284" style="fill:black;" font-family="Arial" font-size="16px">id</text>
+   <rect width="107" height="20" x="651" y="290" style="fill:none;stroke:black;"/>
+   <text width="107" height="20" x="656" y="304" style="fill:black;" font-family="Arial" font-size="16px">nom</text>
+   <rect width="107" height="20" x="651" y="310" style="fill:none;stroke:black;"/>
+   <text width="107" height="20" x="656" y="324" style="fill:black;" font-family="Arial" font-size="16px">prenom</text>
+   <rect width="107" height="20" x="651" y="330" style="fill:none;stroke:black;"/>
+   <text width="107" height="20" x="656" y="344" style="fill:black;" font-family="Arial" font-size="16px">mail</text>
+   <rect width="107" height="20" x="651" y="350" style="fill:none;stroke:black;"/>
+   <text width="107" height="20" x="656" y="364" style="fill:black;" font-family="Arial" font-size="16px">mot_de_passe</text>
+   <rect width="107" height="20" x="651" y="370" style="fill:none;stroke:black;"/>
+   <text width="107" height="20" x="656" y="384" style="fill:black;" font-family="Arial" font-size="16px">description</text>
+   <rect width="107" height="20" x="651" y="390" style="fill:none;stroke:black;"/>
+   <text width="107" height="20" x="656" y="404" style="fill:black;" font-family="Arial" font-size="16px">est_banni</text>
+   <rect width="107" height="20" x="651" y="410" style="fill:none;stroke:black;"/>
+   <text width="107" height="20" x="656" y="424" style="fill:black;" font-family="Arial" font-size="16px">Categorie_id</text>
+   <rect width="107" height="20" x="651" y="430" style="fill:none;stroke:black;"/>
+   <text width="107" height="20" x="656" y="444" style="fill:black;" font-family="Arial" font-size="16px">Statut_id</text>
+   <rect width="155" height="20" x="252" y="185" style="fill:#007;stroke:black;"/>
+   <text width="155" height="20" x="257" y="199" style="fill:#fff;" font-family="Arial" font-size="16px"> utilisateurs_du_projet</text>
+   <rect width="155" height="20" x="252" y="205" style="fill:#aea;stroke:black;"/>
+   <text width="155" height="20" x="257" y="219" style="fill:black;" font-family="Arial" font-size="16px">Utilisateur_id</text>
+   <rect width="155" height="20" x="252" y="225" style="fill:#aea;stroke:black;"/>
+   <text width="155" height="20" x="257" y="239" style="fill:black;" font-family="Arial" font-size="16px">Projet_id</text>
+</svg>
