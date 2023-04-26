@@ -9,7 +9,7 @@ Ceci est un projet consistant à concevoir un logiciel permettant de gérer les 
 - Kevin Lebeau : <https://github.com/kevmorlo>
 - Augustin DUVAL : <https://github.com/Flys3r>
 
-## Langages utilisés ?
+## Langages utilisés
 
 ----------------------------
 
@@ -20,6 +20,10 @@ Ceci est un projet consistant à concevoir un logiciel permettant de gérer les 
     Modèle physique de données :
 
   ![Modèle physique de donnée](database/my_projeception.svg)
+
+## Framework utilisés
+
+- Symfony
 
 ## Contenu
 
