@@ -13,7 +13,7 @@ Ceci est un projet consistant à concevoir un logiciel permettant de gérer les 
 
 ----------------------------
 
-- Pph
+- PHP
 - HTML
 - CSS
 
@@ -38,15 +38,13 @@ Le projet est adapté pour les plateformes mobiles, tablettes et ordinateurs (sa
 
 ### Prérequis
 
-- WAMP
+- Un serveur web (php, apache, mysql/mariadb)
 
-Il vous faudra d'abord installer WAMP.l
+### Installation
 
-Une fois cela fait, il vous faudra créer une base de données, comme par exemple sur PHPMyAdmin, appelée [nombasededonnée] de préférence pour simplifier la suite.
+Pour commencer, vous importez le fichier sql présent dans le dossier database dans votre base de données.
 
-Vous devrez ensuite importer le fichier sql présent dans le dossier database dans votre base de données.
-
-Enfin, il vous faudra plus que lancer le serveur avec la commande 'python ./crm_python' et vous connecter avec votre navigateur web !
+Enfin, vous n'avez plus qu'a lancer le serveur vous connecter avec votre navigateur web !
 
 ## License
 
