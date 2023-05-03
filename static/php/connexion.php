@@ -46,7 +46,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Vérifier si l'utilisateur existe dans la base de données
     if ($resultat) {
         // Vérifier si le mot de passe est correct
-        if (password_verify($password, $resultat['mot_de_passe'])) {
+        if ($password == $resultat['mot_de_passe']) {
 
             // Enregistrer l'identifiant de l'utilisateur dans la session
             $_SESSION["utilisateur_id"] = $resultat["id"];
