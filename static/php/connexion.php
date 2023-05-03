@@ -3,7 +3,7 @@
 <html>
 <head>
     <title>Page de connexion</title>
-    <link rel="stylesheet" type="text/css" href="index.css">
+    <link rel="stylesheet" type="text/css" href="../css/style.css">
 </head>
 <body>
     <h1>Page de connexion</h1>
@@ -24,8 +24,6 @@
 </body>
 </html>
 
-
-
 <?php
 
 // Connexion à la base de données
@@ -38,16 +36,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $password = $_POST["password"];
 
     // Préparer la requête pour vérifier si l'utilisateur existe dans la base de données
-    $stmt = $conn->prepare("SELECT * FROM utilisateur WHERE nom = ?");
-
-    // Lier les paramètres à la requête
-    $stmt->bind_param("s", $username);
+    $assertion = $conn_bdd->prepare("SELECT nom FROM utilisateur WHERE nom IS LIKE :nom");
 
     // Exécuter la requête
-    $stmt->execute();
+    $traitement = $assertion->execute(['nom' => $nom]);
 
     // Obtenir le résultat de la requête
-    $result = $stmt->get_result();
+    $result = $assertion->get_result();
 
     // Vérifier si l'utilisateur existe dans la base de données
     if ($result->num_rows == 1) {

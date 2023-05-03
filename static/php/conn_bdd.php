@@ -6,7 +6,7 @@ $options = [
   ];
 // Remplacer au besoin
 $nom_de_domaine = "localhost";
-$base_de_donnees = "villes_francaises";
+$base_de_donnees = "my_projeception";
 $utilisateur = "root";
 $mot_de_passe = "";
 // Ne pas toucher

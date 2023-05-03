@@ -34,3 +34,34 @@ th{
     text-decoration: none;
     color: black;
 }
+
+body {
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+}
+
+
+h1 {
+    text-align: center;
+}
+
+
+form {
+    border: 1px solid #ccc;
+    padding: 20px;
+    width: 300px;
+    margin: 0 auto;
+}
+
+
+input[type="submit"] {
+    display: block;
+    margin: 0 auto;
+}
+
+
+p {
+    color: red;
+    font-weight: bold;
+    text-align: center;
+}
