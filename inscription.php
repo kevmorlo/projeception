@@ -22,6 +22,9 @@
 		<label for="confirmation">Confirmation du mot de passe :</label>
 		<input type="password" id="confirmation" name="confirmation"><br>
 
+		<label for="description">Description :</label>
+		<input type="text" id="prenom" name="prenom"><br>
+
 		<input type="submit" value="S'inscrire">
 	</form>
 </body>
