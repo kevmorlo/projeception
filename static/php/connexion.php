@@ -28,18 +28,8 @@
 
 <?php
 
-  // Connexion à la base de données
-  $host = "localhost"; 
-  $user = "root"; 
-  $password = ""; 
-  $database = "my_projeception"; 
-
-  $conn = mysqli_connect($host, $user, $password, $database);
-
-// Vérifier si la connexion a été établie avec succès
-if ($conn->connect_error) {
-    die("La connexion a échoué : " . $conn->connect_error);
-}
+// Connexion à la base de données
+include "conn_bdd.php";
 
 // Vérifier si le formulaire de connexion a été soumis
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
