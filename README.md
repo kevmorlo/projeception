@@ -23,7 +23,7 @@ Ceci est un projet consistant à concevoir un logiciel permettant de gérer les 
 
 ## Framework utilisés
 
-- Symfony
+Aucun framework utilisé pour ce projet
 
 ## Contenu
 
