@@ -6,7 +6,7 @@ Ceci est un projet consistant à concevoir un logiciel permettant de gérer les 
 
 ----------------------------
 
-- Kevin Lebeau : <https://github.com/kevmorlo>
+- Kevin LEBEAU : <https://github.com/kevmorlo>
 - Augustin DUVAL : <https://github.com/Flys3r>
 
 ## Langages utilisés
