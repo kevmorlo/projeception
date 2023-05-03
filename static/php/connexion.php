@@ -26,8 +26,9 @@
 
 <?php
 
-// Connexion à la base de données
-include "conn_bdd.php";
+// Initialisation
+session_start();// Démarrer une session pour l'utilisateur
+include "conn_bdd.php"; // Connexion à la base de données
 
 // Vérifier si le formulaire de connexion a été soumis
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -41,22 +42,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Exécuter la requête
     $traitement = $assertion->execute(['nom' => $nom]);
 
-    // Obtenir le résultat de la requête
-    $result = $assertion->get_result();
+    // Afficher le résultat de la requête
+    if($traitement){
+        $resultat = $assertion->fetchAll();
+    }
 
     // Vérifier si l'utilisateur existe dans la base de données
-    if ($result->num_rows == 1) {
+    if ($resultat->rowCount() == 1) {
         // Obtenir les informations de l'utilisateur
-        $row = $result->fetch_assoc();
+        $ligne = $resultat->fetchAll();
 
         // Vérifier si le mot de passe est correct
-        if ($password == $row["mot_de_passe"]) {
-
-            // Démarrer une session pour l'utilisateur
-            session_start();
+        if ($password == $ligne["mot_de_passe"]) {
 
             // Enregistrer l'identifiant de l'utilisateur dans la session
-            $_SESSION["utilisateur_id"] = $row["id"];
+            $_SESSION["utilisateur_id"] = $ligne["id"];
 
             // Rediriger l'utilisateur vers la page d'accueil
             header("Location: reussi.php");
