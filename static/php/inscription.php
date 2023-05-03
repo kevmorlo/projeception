@@ -36,17 +36,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
 	$motdepasse = $_POST['motdepasse'];
 }
 // Connexion à la base de données
-$host = "localhost"; 
-$user = "root"; 
-$password = ""; 
-$database = "my_projeception"; 
-
-$conn = mysqli_connect($host, $user, $password, $database);
-
-// Vérification de la connexion
-if (!$conn) {
-	die("Connection failed: " . mysqli_connect_error());
-}
+include "conn_bdd.php";
 
 // Code pour insérer les données dans la base de données
 if($_SERVER['REQUEST_METHOD'] == 'POST') {
