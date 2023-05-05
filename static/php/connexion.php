@@ -5,39 +5,20 @@ if(!isset($_SESSION)){
 }
 require "conn_bdd.php"; // Connexion à la base de données
 include "base.php";
-?>
 
-<body>
-    <?php if (isset($error_message)): ?>
-    <p><?php echo $error_message; ?></p>
-<?php endif; ?>
-    <div class="form-super-container">
-        <div class="form-container">
-            <form method="POST" class="form">
-                <h1>Se connecter</h1>
-                <input type="text" id="username" name="username" class="form-input" placeholder="Nom d'utilisateur" required>
-                <input type="password" id="password" name="password" class="form-input" placeholder="Mot de passe" required>
-                <input type="submit" value="Se connecter" class="form-button">
-                <a href="inscription.php" class="a-redirect" title="Créer un compte" required>Créer un compte</a>
-            </form>
-        </div>
-    </div>
-</body>
-</html>
-<?php
 // Attendre que le formulaire sois soumis
-if(isset($_POST['username']) && isset($_POST['password'])) {
+if(isset($_POST['pseudonyme']) && isset($_POST['mot_de_passe'])) {
     // Vérifier si le formulaire de connexion a été soumis
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Récupérer les informations de connexion soumises par l'utilisateur
-        $username = $_POST["username"];
-        $password = $_POST["password"];
+        $pseudonyme = $_POST["pseudonyme"];
+        $mot_de_passe = $_POST["mot_de_passe"];
 
         // Préparer la requête pour vérifier si l'utilisateur existe dans la base de données
-        $assertion = $conn_bdd->prepare("SELECT id, mot_de_passe FROM utilisateur WHERE nom LIKE :nom");
+        $assertion = $conn_bdd->prepare("SELECT id, mot_de_passe FROM utilisateur WHERE pseudonyme LIKE :pseudonyme");
 
         // Exécuter la requête
-        $traitement = $assertion->execute(['nom' => $username]);
+        $traitement = $assertion->execute(['pseudonyme' => $pseudonyme]);
 
         // Afficher le résultat de la requête
         if($traitement){
@@ -47,7 +28,8 @@ if(isset($_POST['username']) && isset($_POST['password'])) {
         // Vérifier si l'utilisateur existe dans la base de données
         if ($resultat) {
             // Vérifier si le mot de passe est correct
-            if ($password == $resultat['mot_de_passe']) {
+            $mdp_hash = $resultat['mot_de_passe'];
+            if (password_verify($mot_de_passe, $mdp_hash)) {
 
                 // Enregistrer l'identifiant de l'utilisateur dans la session
                 $_SESSION["utilisateur_id"] = $resultat["id"];
@@ -67,3 +49,18 @@ if(isset($_POST['username']) && isset($_POST['password'])) {
 }
 
 ?>
+
+<body>
+    <div class="form-super-container">
+        <div class="form-container">
+            <form method="POST" class="form">
+                <h1>Se connecter</h1>
+                <input type="text" id="pseudonyme" name="pseudonyme" class="form-input" placeholder="Nom d'utilisateur" required>
+                <input type="password" id="mot_de_passe" name="mot_de_passe" class="form-input" placeholder="Mot de passe" required>
+                <input type="submit" value="Se connecter" class="form-button">
+                <a href="inscription.php" class="a-redirect" title="Créer un compte" required>Créer un compte</a>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
