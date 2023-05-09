@@ -35,7 +35,7 @@ if(isset($_POST['pseudonyme']) && isset($_POST['mot_de_passe'])) {
                 $_SESSION["utilisateur_id"] = $resultat["id"];
 
                 // Rediriger l'utilisateur vers la page d'accueil
-                header("Location: reussi.php");
+                header("Location: creation_projet.php");
                 exit();
             } else {
                 // Afficher un message d'erreur si le mot de passe est incorrect
