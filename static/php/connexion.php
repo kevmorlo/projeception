@@ -10,15 +10,17 @@ include "base.php";
 if(isset($_POST['pseudonyme']) && isset($_POST['mot_de_passe'])) {
     // Vérifier si le formulaire de connexion a été soumis
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        // Récupérer les informations de connexion soumises par l'utilisateur
-        $pseudonyme = $_POST["pseudonyme"];
-        $mot_de_passe = $_POST["mot_de_passe"];
+        // Récupérer les données du formulaire en les filtrant avec filter_input()
+        $donnees = [
+			"pseudonyme" => filter_input(INPUT_POST, "pseudonyme", FILTER_SANITIZE_EMAIL),
+			"mot_de_passe" => $_POST["mot_de_passe"],
+		];
 
         // Préparer la requête pour vérifier si l'utilisateur existe dans la base de données
         $assertion = $conn_bdd->prepare("SELECT id, mot_de_passe FROM utilisateur WHERE pseudonyme LIKE :pseudonyme");
 
         // Exécuter la requête
-        $traitement = $assertion->execute(['pseudonyme' => $pseudonyme]);
+        $traitement = $assertion->execute(['pseudonyme' => $donnees["pseudonyme"]]);
 
         // Afficher le résultat de la requête
         if($traitement){
@@ -29,7 +31,7 @@ if(isset($_POST['pseudonyme']) && isset($_POST['mot_de_passe'])) {
         if ($resultat) {
             // Vérifier si le mot de passe est correct
             $mdp_hash = $resultat['mot_de_passe'];
-            if (password_verify($mot_de_passe, $mdp_hash)) {
+            if (password_verify($donnees["mot_de_passe"], $mdp_hash)) {
 
                 // Enregistrer l'identifiant de l'utilisateur dans la session
                 $_SESSION["utilisateur_id"] = $resultat["id"];

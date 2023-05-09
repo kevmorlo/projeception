@@ -10,27 +10,29 @@ if(!isset($_SESSION)){
 if(isset($_POST['mail']) && isset($_POST['mot_de_passe'])) {
 	// Code pour insérer les données dans la base de données
 	if($_SERVER['REQUEST_METHOD'] == 'POST') {
-		// Récupérer les données du formulaire
-		$pseudonyme = $_POST['pseudonyme'];
-		$nom = $_POST['nom'];
-		$prenom = $_POST['prenom'];
-		$telephone = $_POST['telephone'];
-		$mail = $_POST['mail'];
-		$mot_de_passe = $_POST['mot_de_passe'];
-		$confirmation = $_POST['mdp_confirm'];
+		// Récupérer les données du formulaire en les filtrant avec filter_input()
+		$donnees = [
+			"pseudonyme" => filter_input(INPUT_POST, "pseudonyme", FILTER_SANITIZE_EMAIL),
+			"nom" => filter_input(INPUT_POST, "pseudonyme", FILTER_SANITIZE_EMAIL),
+			"prenom" => filter_input(INPUT_POST, "pseudonyme", FILTER_SANITIZE_EMAIL),
+			"telephone" => filter_input(INPUT_POST, "pseudonyme", FILTER_SANITIZE_EMAIL),
+			"mail" => filter_input(INPUT_POST, "mail", FILTER_VALIDATE_EMAIL),
+			"mot_de_passe" => filter_input(INPUT_POST, "pseudonyme", FILTER_SANITIZE_EMAIL),
+			"confirmation" => filter_input(INPUT_POST, "pseudonyme", FILTER_SANITIZE_EMAIL),
+		];
 	
 		// Vérifier que le mot de passe et la confirmation sont identiques
-		if($mot_de_passe != $confirmation) {
+		if($donnees["mot_de_passe"] != $confirmation) {
 			echo("<script>alert('Les mots de passe doivent être identiques')</script>");
 		} else {
 			// Hasher le mot de passe avec l'algorithme bcrypt
-			$hash = password_hash($mot_de_passe, PASSWORD_DEFAULT);
+			$hash = password_hash($donnees["mot_de_passe"], PASSWORD_DEFAULT);
 	
 			// Préparer la requête SQL pour insérer les données dans la base de données
 			$assertion = $conn_bdd->prepare("INSERT INTO utilisateur (pseudonyme, nom, prenom, telephone, mail, mot_de_passe) VALUES (:pseudonyme, :nom, :prenom, :telephone, :mail, :hash)");
 	
 			// Exécuter la requête
-			$traitement = $assertion->execute(["pseudonyme" => $pseudonyme, "nom" => $nom, "prenom" => $prenom, "telephone" => $telephone, "mail" => $mail, "hash" => $hash]);
+			$traitement = $assertion->execute(["pseudonyme" => $donnees["pseudonyme"], "nom" => $donnees["nom"], "prenom" => $donnees["prenom"], "telephone" => $donnees["telephone"], "mail" => $donnees["mail"], "hash" => $hash]);
 			if(!$traitement){
 				echo("Connexion échouée: " . print_r($assertion->errorInfo(), true));
 			}
