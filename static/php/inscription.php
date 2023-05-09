@@ -2,6 +2,9 @@
 // Initialisation
 require 'conn_bdd.php';
 include 'base.php';
+if(!isset($_SESSION)){
+    session_start();// Démarrer une session pour l'utilisateur
+}
 
 // On attends que le formulaire sois rempli
 if(isset($_POST['mail']) && isset($_POST['mot_de_passe'])) {
@@ -18,7 +21,7 @@ if(isset($_POST['mail']) && isset($_POST['mot_de_passe'])) {
 	
 		// Vérifier que le mot de passe et la confirmation sont identiques
 		if($mot_de_passe != $confirmation) {
-			echo("<script>alert('Le mot de passe et la confirmation doivent être identiques')</script>");
+			echo("<script>alert('Les mots de passe doivent être identiques')</script>");
 		} else {
 			// Hasher le mot de passe avec l'algorithme bcrypt
 			$hash = password_hash($mot_de_passe, PASSWORD_DEFAULT);
