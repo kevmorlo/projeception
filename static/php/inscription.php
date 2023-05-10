@@ -13,12 +13,12 @@ if(isset($_POST['mail']) && isset($_POST['mot_de_passe'])) {
 		// Récupérer les données du formulaire en les filtrant avec filter_input()
 		$donnees = [
 			"pseudonyme" => filter_input(INPUT_POST, "pseudonyme", FILTER_SANITIZE_EMAIL),
-			"nom" => filter_input(INPUT_POST, "pseudonyme", FILTER_SANITIZE_EMAIL),
-			"prenom" => filter_input(INPUT_POST, "pseudonyme", FILTER_SANITIZE_EMAIL),
-			"telephone" => filter_input(INPUT_POST, "pseudonyme", FILTER_SANITIZE_EMAIL),
+			"nom" => filter_input(INPUT_POST, "nom", FILTER_UNSAFE_RAW),
+			"prenom" => filter_input(INPUT_POST, "prenom", FILTER_UNSAFE_RAW),
+			"telephone" => filter_input(INPUT_POST, "telephone", FILTER_UNSAFE_RAW),
 			"mail" => filter_input(INPUT_POST, "mail", FILTER_VALIDATE_EMAIL),
-			"mot_de_passe" => filter_input(INPUT_POST, "pseudonyme", FILTER_SANITIZE_EMAIL),
-			"confirmation" => filter_input(INPUT_POST, "pseudonyme", FILTER_SANITIZE_EMAIL),
+			"mot_de_passe" => filter_input(INPUT_POST, "mot_de_passe", FILTER_SANITIZE_EMAIL),
+			"confirmation" => filter_input(INPUT_POST, "confirmation", FILTER_SANITIZE_EMAIL),
 		];
 	
 		// Vérifier que le mot de passe et la confirmation sont identiques

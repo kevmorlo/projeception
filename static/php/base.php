@@ -25,7 +25,7 @@ else {
         <?php // On vient afficher le bouton pour retourner à l'acceuil sur toutes les pages sauf index.php
         if(basename($_SERVER['PHP_SELF']) != "index.php") {
         ?>
-            <a href="static/php/home.php">
+            <a href="accueil.php">
                 <img src="../media/img/icone_accueil.svg" alt="Accueil" title="Accueil" class="base_icon">
             </a>
         <?php

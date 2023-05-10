@@ -23,12 +23,12 @@ if(!isset($_SESSION)){
 		$donnees = [
 			'id' => $id,
 			'pseudonyme' => filter_input(INPUT_POST, 'pseudonyme', FILTER_SANITIZE_EMAIL),
-			'nom' => filter_input(INPUT_POST, 'nom', FILTER_SANITIZE_EMAIL),
-			'prenom' => filter_input(INPUT_POST, 'prenom', FILTER_SANITIZE_EMAIL),
+			'nom' => filter_input(INPUT_POST, 'nom', FILTER_UNSAFE_RAW),
+			'prenom' => filter_input(INPUT_POST, 'prenom', FILTER_UNSAFE_RAW),
 			'telephone' => filter_input(INPUT_POST, 'telephone', FILTER_SANITIZE_EMAIL),
 			'mail' => filter_input(INPUT_POST, 'mail', FILTER_VALIDATE_EMAIL),
 			'categorie' => $_POST['categorie'],
-			'description' => filter_input(INPUT_POST, 'description', FILTER_SANITIZE_EMAIL),
+			'description' => filter_input(INPUT_POST, 'description', FILTER_UNSAFE_RAW),
 		];
 
 		// Préparer la requête SQL pour insérer les données dans la base de données
@@ -66,7 +66,11 @@ if(!isset($_SESSION)){
                 <option value="6">Intervenant</option>
                 <option value="7">Equipe pédagogique</option>
                 <option value="8">Autre</option>
-				<option value="<?=$donnees_utilisateur["Categorie_id"]?>" selected><?=$donnees_categorie["nom"]?></option>
+				<?php
+				if(isset($donnees_categorie) && !empty($donnees_categorie)) {
+					// Accéder aux indices du tableau $donnees_categorie?>
+				<option value="<?=$donnees_utilisateur["Categorie_id"]?>" selected><?=$donnees_categorie["nom"]?></option><?php
+				}?>
             </select>
 			<textarea type="text" name="description" placeholder="Ecrivez votre bio ici" class="form-input comment-textarea"><?=$donnees_utilisateur["description"]?></textarea>
 		<button type="submit" class="form-button">Modifier</button>
