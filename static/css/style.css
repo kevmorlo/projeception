@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@300&display=swap');
 body{
     font-family: 'Libre Franklin', sans-serif;
+    background-color: #F5F7FB;
 }
 
 h1{
@@ -25,21 +26,51 @@ th{
     text-decoration: None;
   }
 
-.navbar {
+  .navbar {
     display: flex;
-    width: 100%;
     align-items: center;
-    justify-content: space-between;
-    background-color: #C5E1A5;
+    background-color: #1AABE3;
     padding-top: 10px;
     padding-bottom: 10px;
   }
   
   .logo img {
     height: 50px;
-    display: flex;
-    justify-content: flex-start;
     margin: 10px;
+  }
+  
+  .menu {
+    display: block;
+    align-items: center;
+    margin: 10px;
+    margin-left: auto;
+    gap: 20px;
+  }
+  
+  .menu button {
+    background-color: #ccc;
+    border: none;
+    color: #fff;
+    font-size: 16px;
+    padding: 8px 12px;
+    margin-left: 10px;
+  }
+  
+  @media (min-width: 769px) {
+    .menu {
+      gap: 40px;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .navbar {
+      flex-direction: column;
+      font-size: smaller;
+    }
+    .menu {
+      margin-top: 10px;
+      justify-content: flex-end;
+    }
   }
 
 .basic-container{
@@ -146,4 +177,14 @@ box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.07);
 
 .comment-textarea{
     resize: None;
+}
+
+.base_icon{
+    max-width: 7%;
+    height: auto;
+}
+
+.base_a{
+    display: flex;
+    justify-content: end;
 }
