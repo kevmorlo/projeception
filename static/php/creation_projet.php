@@ -13,7 +13,7 @@ if(!isset($_SESSION)){
 				<h1 class="register-h1">Créer un projet</h1>
 				<input type="text" name="titre" placeholder="Titre" class="form-input" id="form-user" required>
 				<input type="text" name="description" placeholder="Description" class="form-input" id="form-name" required>
-				<button type="submit" class="form-button">Créer projet</button>
+				<button type="submit" class="form-button">Créer un projet</button>
 				<a href="reussi.php" class="a-redirect" title="Retour" required>Retour</a>
 			</form>
 		</div>
@@ -21,11 +21,6 @@ if(!isset($_SESSION)){
 </html>
 	
 <?php
-
-if(!isset($_SESSION)){
-    session_start(); // Démarrer une session pour l'utilisateur
-}
-
 
 // Attendre que le formulaire soit soumis
 if (isset($_POST['titre']) && isset($_POST['description']) && isset($_SESSION["utilisateur_id"])) {

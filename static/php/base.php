@@ -23,50 +23,58 @@ if(basename($_SERVER['PHP_SELF']) != "index.php") {
 <body>
     <nav class="navbar">
         <div class="logo">
-            <a href="/index.php" class="base_a">
-                <img src="../media/img/mydil.webp" alt="Logo LJBAC" title="La Jolie Boîte à Code">
+            <a href="/index.php">
+                <div class="base-button">
+                    <img src="../media/img/mydil.webp" alt="Logo MyDIL" title="MyDIL"></img>
+                </div>
             </a>
         </div>
         <div class="menu">
         <?php
         // On vérifie si la page est différente de accueil.php pour afficher le bouton d'accueil
         if(basename($_SERVER['PHP_SELF']) != "accueil.php") {
-            $iconeAccueil = "../media/img/icone_accueil.svg";
-            $lienAccueil = "accueil.php";
+            $icone_accueil = "../media/img/icone_accueil.svg";
+            $lien_accueil = "accueil.php";
             
             // Si la page est index.php, on ajuste les valeurs
             if(basename($_SERVER['PHP_SELF']) == "index.php") {
-                $iconeAccueil = "static/media/img/icone_accueil.svg";
-                $lienAccueil = "static/php/accueil.php";
+                $icone_accueil = "static/media/img/icone_accueil.svg";
+                $lien_accueil = "static/php/accueil.php";
             }
         ?>
-            <a href="<?= $lienAccueil ?>" class="base_a">
-                <img src="<?= $iconeAccueil ?>" alt="Accueil" title="Accueil" class="base_icon">
+            <a href="<?= $lien_accueil ?>">
+                <div class="base-button">
+                    <img src="<?= $icone_accueil ?>" alt="Accueil" title="Accueil" class="base_icon"></img>
+                </div>
             </a>
         <?php
         }
 
         // On vérifie si l'utilisateur est connecté
-        if(isset($id)) {
-            $iconeDeconnexion = "../media/img/icone_decon.svg";
-            $lienDeconnexion = "deconnexion.php";
+        if(isset($_SESSION['utilisateur_id'])) {
+            $icone_deconnexion = "../media/img/icone_decon.svg";
+            $lien_deconnexion = "deconnexion.php";
         ?>
-            <a href="<?= $lienDeconnexion ?>" class="base_a">
-                <img src="<?= $iconeDeconnexion ?>" alt="Se déconnecter" title="Se déconnecter" class="base_icon">
+            <a href="<?= $lien_deconnexion ?>" class="base-button">
+                <div class="base-button">
+                    <img src="<?= $icone_deconnexion ?>" alt="Se déconnecter" title="Se déconnecter" class="base_icon"></img>
+                </div>
             </a>
         <?php
         } else {
-            $iconeConnexion = "../media/img/icone_con.svg";
-            $lienConnexion = "connexion.php";
+            $icone_connexion = "../media/img/icone_con.svg";
+            $lien_connexion = "connexion.php";
             
             // Si la page est index.php, on ajuste les valeurs
             if(basename($_SERVER['PHP_SELF']) == "index.php") {
-                $iconeConnexion = "static/media/img/icone_con.svg";
-                $lienConnexion = "static/php/connexion.php";
+                $icone_connexion = "static/media/img/icone_con.svg";
+                $lien_connexion = "static/php/connexion.php";
             }
         ?>
-            <a href="<?= $lienConnexion ?>" class="base_a">
-                <img src="<?= $iconeConnexion ?>" alt="Se connecter" title="Se connecter" class="base_icon">
+            <a href="<?= $lien_connexion ?>">
+                <div class="base-button">
+                    <img src="<?= $icone_connexion ?>" alt="Se connecter" title="Se connecter" class="base_icon"></img>
+                </div>
             </a>
         <?php
         }

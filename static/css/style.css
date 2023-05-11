@@ -2,6 +2,8 @@
 body{
     font-family: 'Libre Franklin', sans-serif;
     background-color: #F5F7FB;
+    margin: 0;
+    padding: 0;
 }
 
 h1{
@@ -27,11 +29,18 @@ th{
   }
 
   .navbar {
-    display: flex;
+    display: grid;
+    grid-template-columns: 3;
+    grid-template-rows: 1;
     align-items: center;
     background-color: #1AABE3;
     padding-top: 10px;
     padding-bottom: 10px;
+  }
+
+  .logo{
+    grid-column: 1/4;
+    grid-row: 1;
   }
   
   .logo img {
@@ -40,12 +49,13 @@ th{
   }
   
   .menu {
-    display: block;
-    align-items: center;
+    grid-column: 4;
+    grid-row: 1;
+    display: flex;
+    justify-content: flex-end;
     margin: 10px;
-    margin-left: auto;
-    gap: 20px;
-  }
+    gap:20px;
+}
   
   .menu button {
     background-color: #ccc;
@@ -182,9 +192,4 @@ box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.07);
 .base_icon{
     max-width: 7%;
     height: auto;
-}
-
-.base_a{
-    display: flex;
-    justify-content: end;
 }
