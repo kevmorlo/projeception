@@ -1,11 +1,13 @@
 <?php
-
-if(!isset($_SESSION)){
-    // Arrêter la session de l'utilisateur
-    session_abort();
-
-    // Envoyer l'utilisateur à la page de connexion
-    header("Location: connexion.php");
-}
 require "conn_bdd.php"; // Connexion à la base de données
 include "base.php";
+session_start(); // Start the session
+
+if(isset($_SESSION['utilisateur_id'])){
+    // Remove the content of $_SESSION['utilisateur_id']
+    unset($_SESSION['utilisateur_id']);
+}
+
+// Redirect the user to the login page
+header("Location: connexion.php");
+exit();

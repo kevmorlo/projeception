@@ -12,7 +12,7 @@ if(!isset($_SESSION)){
 			<form action="creation_projet.php" method="POST" class="form">
 				<h1 class="register-h1">Créer un projet</h1>
 				<input type="text" name="titre" placeholder="Titre" class="form-input" id="form-user" required>
-				<input type="text" name="description" placeholder="Description" class="form-input" id="form-name" required>
+				<textarea type="text" name="description" placeholder="Décrivez votre projet ici" class="form-input comment-textarea"></textarea>
 				<button type="submit" class="form-button">Créer un projet</button>
 				<a href="afficher_projet.php" class="a-redirect" title="Retour" required>Retour</a>
 			</form>

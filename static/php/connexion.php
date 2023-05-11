@@ -38,7 +38,6 @@ if(isset($_POST['pseudonyme']) && isset($_POST['mot_de_passe'])) {
 
                 // Rediriger l'utilisateur vers la page d'accueil
                 header("Location: creation_projet.php");
-                exit();
             } else {
                 // Afficher un message d'erreur si le mot de passe est incorrect
                 echo('<script>alert("Le mot de passe est incorrect.")</script>');
