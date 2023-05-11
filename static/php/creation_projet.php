@@ -14,7 +14,7 @@ if(!isset($_SESSION)){
 				<input type="text" name="titre" placeholder="Titre" class="form-input" id="form-user" required>
 				<input type="text" name="description" placeholder="Description" class="form-input" id="form-name" required>
 				<button type="submit" class="form-button">Créer un projet</button>
-				<a href="reussi.php" class="a-redirect" title="Retour" required>Retour</a>
+				<a href="afficher_projet.php" class="a-redirect" title="Retour" required>Retour</a>
 			</form>
 		</div>
 </body>
