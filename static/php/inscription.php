@@ -1,6 +1,5 @@
 <?php
 // Initialisation
-require 'conn_bdd.php';
 include 'base.php';
 if (!isset($_SESSION)) {
     session_start(); // Démarrer une session pour l'utilisateur

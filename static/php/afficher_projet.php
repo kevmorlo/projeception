@@ -1,5 +1,4 @@
 <?php
-require 'conn_bdd.php';
 include 'base.php';
 
 if(!isset($_SESSION)){

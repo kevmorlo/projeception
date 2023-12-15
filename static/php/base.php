@@ -19,6 +19,7 @@
         </div>
         <div class="menu">
         <?php
+        require 'conn_bdd.php'; // On inclut la connexion à la base de données
         // On vérifie si la page est différente de accueil.php pour afficher le bouton d'accueil
         if(basename($_SERVER['PHP_SELF']) != "accueil.php") {
         ?>

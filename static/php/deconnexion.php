@@ -1,5 +1,4 @@
 <?php
-require "conn_bdd.php"; // Connexion à la base de données
 include "base.php";
 session_start(); // Start the session
 

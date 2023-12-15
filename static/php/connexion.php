@@ -3,7 +3,6 @@
 if(!isset($_SESSION)){
     session_start();// Démarrer une session pour l'utilisateur
 }
-require "conn_bdd.php"; // Connexion à la base de données
 include "base.php";
 
 // Attendre que le formulaire sois soumis

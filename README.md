@@ -42,12 +42,29 @@ Le projet est adapté pour les plateformes mobiles, tablettes et ordinateurs (sa
 ### Prérequis
 
 - Un serveur web (php, apache, mysql/mariadb)
+- Composer
+- Node (facultatif)
 
 ### Installation
 
-Pour commencer, vous importez le fichier sql présent dans le dossier database dans votre base de données.
+1. Importez les dépendances Composer du projet avec la commande : 
+```bash
+composer install
+```
 
-Enfin, vous n'avez plus qu'a lancer le serveur vous connecter avec votre navigateur web !
+2. (Optionnel) Pour pouvoir modifier les styles du projet, installez les dépendances de Node avec la commande : 
+```bash
+npm install
+```
+
+3. (Optionnel) Pour lancer le compilateur de Sass, tapez la commande : 
+```bash
+npm run watch
+```
+
+4. Vous devez importer le fichier sql présent dans le dossier database dans votre base de données.
+
+5. Lancez le serveur.
 
 ## License
 
