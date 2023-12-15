@@ -1,4 +1,5 @@
 <?php
+namespace conn_bdd;
 class ConnectionBdd {
     private $dbh;
 
