@@ -1,0 +1,19 @@
+{
+  "name": "projeception",
+  "version": "0.1.0",
+  "description": "Ce projet est un projet d'école ayant pour objectif de servir de plateforme pour les apprenants de l'EPSI leur permettant de publier et de gérer leurs projets",
+  "main": "index.js",
+  "scripts": {
+    "watch": "sass --watch ./static/sass/style.scss ./static/css/style.css"
+  },
+  "keywords": [
+    "php",
+    "sass",
+    "EPSI"
+  ],
+  "author": "Kevin Lebeau, Augustin Duval",
+  "license": "Apache-2.0",
+  "devDependencies": {
+    "sass": "^1.69.5"
+  }
+}
