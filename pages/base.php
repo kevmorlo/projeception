@@ -1,8 +1,10 @@
 <?php
+// On inclut les dépendances
+use ConnexionBdd;
 
-
-// On inclut la connexion à la base de données
-require_once "conn_bdd.php";
+// On instancie la classe
+$bdd = new ConnexionBdd();
+$dbh = $bdd->recupDbh();
 ?>
 
 <!DOCTYPE html>

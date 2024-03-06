@@ -28,21 +28,16 @@ th{
     text-decoration: None;
 }
 
-.navbar {
-  display: grid;
-  position: fixed;
+.header_nav {
+  display: flex;
   top: 0;
-  grid-template-columns: 3;
-  grid-template-rows: 1;
+  justify-content: space-between;
   align-items: center;
   background-color: #1AABE3;
   padding-top: 10px;
   padding-bottom: 10px;
 
   & .nav_logo{
-    grid-column: 1;
-    grid-row: 1;
-  
     & img{
       height: 50px;
       margin-left: 10%;
@@ -51,7 +46,6 @@ th{
   }
 
   & .nav_liste {
-    grid-column: 2;
     list-style: none;
   }
 }

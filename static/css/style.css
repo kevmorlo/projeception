@@ -29,29 +29,21 @@ th {
   text-decoration: None;
 }
 
-.navbar {
-  display: grid;
-  position: fixed;
+.header_nav {
+  display: flex;
   top: 0;
-  grid-template-columns: 3;
-  grid-template-rows: 1;
+  justify-content: space-between;
   align-items: center;
   background-color: #1AABE3;
   padding-top: 10px;
   padding-bottom: 10px;
 }
-.navbar .nav_logo {
-  grid-column: 1/4;
-  grid-row: 1;
-}
-.navbar .nav_logo img {
+.header_nav .nav_logo img {
   height: 50px;
   margin-left: 10%;
   margin-top: 10px;
 }
-.navbar .nav_liste {
-  grid-column: 3/4;
-  grid-row: 1;
+.header_nav .nav_liste {
   list-style: none;
 }
 

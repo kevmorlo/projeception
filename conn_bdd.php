@@ -1,5 +1,7 @@
 <?php
-class ConnectionBdd {
+use PDO;
+use PDOException;
+class ConnexionBdd {
     private $dbh;
 
     public function __construct() {
@@ -35,7 +37,3 @@ class ConnectionBdd {
         return $this->dbh;
     }
 }
-
-// On instancie la classe
-$bdd = new ConnectionBdd();
-$dbh = $bdd->recupDbh();
