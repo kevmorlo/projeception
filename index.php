@@ -4,7 +4,7 @@ require "pages/base.php"
 <body>
     <h1 class="index-h1">Avec MyProjeception, publiez et rejoignez des projets avec tous les apprenants de l'EPSI !</h1>
         <div class="index-container">
-            <a href="static/php/connexion.php" class="index-redirect">Créer un compte</a>
+            <a href="pages/connexion.php" class="index-redirect">Créer un compte</a>
             <p class="index-paragraph" id="index-p1">        
                 Bienvenue sur MyProjeception, votre plateforme pour partager vos projets entre apprenants de l'EPSI.
             </p>
