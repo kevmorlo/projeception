@@ -1,12 +1,23 @@
 <?php
+namespace Bdd;
 use PDO;
 use PDOException;
+
+
+/**
+ * Classe ConnexionBdd
+ * Represente la connexion à la base de données.
+ */
 class ConnexionBdd {
     private $dbh;
 
+    /**
+     * Constructeur de ConnexionBdd.
+     * Initialise la connexion à la bdd.
+     */
     public function __construct() {
         // On initialise les dépendances
-        require "./vendor/autoload.php";
+        require_once __DIR__ . "/vendor/autoload.php";
 
         $dotenv = \Dotenv\Dotenv::createMutable(__DIR__);
         $dotenv->load();
@@ -33,6 +44,10 @@ class ConnexionBdd {
         }
     }
 
+    /**
+     * Récupère la connexion à la bdd.
+     * @return PDO la connexion à la bdd.
+     */
     public function recupDbh() {
         return $this->dbh;
     }

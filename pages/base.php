@@ -1,6 +1,11 @@
 <?php
-// On inclut les dépendances
-use ConnexionBdd;
+/**
+ * Fichier contenant les composants présents sur toutes les pages.
+ */
+use Bdd\ConnexionBdd;
+
+// On inclut le fichier de connexion à la base de données
+require_once $_SERVER["DOCUMENT_ROOT"] . "/conn_bdd.php";
 
 // On instancie la classe
 $bdd = new ConnexionBdd();
