@@ -19,8 +19,7 @@ Ceci est un projet consistant à concevoir un logiciel permettant de gérer les 
 
 ## Framework utilisés
 
-- Laravel
-- Sass
+Aucun framework utilisé pour ce projet
 
 ## Contenu
 
@@ -43,21 +42,26 @@ Le projet est adapté pour les plateformes mobiles, tablettes et ordinateurs (sa
 
 ### Installation
 
-1. (Optionnel) Pour pouvoir modifier les styles du projet, installez les dépendances de Node avec la commande : 
+1. Importez les dépendances Composer du projet avec la commande : 
+```bash
+composer install
+```
+
+2. (Optionnel) Pour pouvoir modifier les styles du projet, installez les dépendances de Node avec la commande : 
 ```bash
 npm install
 ```
 
-2. (Optionnel) Pour lancer le compilateur de Sass, tapez la commande : 
+3. (Optionnel) Pour lancer le compilateur de Sass, tapez la commande : 
 ```bash
 npm run watch
 ```
 
-3. Copiez le fichier ```.env.example``` et renommez le ```.env```.
+4. Copiez le fichier ```.env.example``` et renommez le ```.env```.
 
-4. Vous devez importer le fichier sql présent dans le dossier database dans votre base de données.
+5. Vous devez importer le fichier sql présent dans le dossier database dans votre base de données.
 
-5. Lancez le serveur.
+6. Lancez le serveur.
 
 ## License
 

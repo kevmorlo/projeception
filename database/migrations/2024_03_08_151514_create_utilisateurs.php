@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Schema;
  * Représente la table "utilisateurs" de la base de données
  * @see Utilisateur
  */
-class CreateUtilisateursTable extends Migration
+return new class extends Migration
 {
     public function up(): void
     {
@@ -35,4 +35,4 @@ class CreateUtilisateursTable extends Migration
     {
         Schema::dropIfExists('utilisateurs');
     }
-}
+};

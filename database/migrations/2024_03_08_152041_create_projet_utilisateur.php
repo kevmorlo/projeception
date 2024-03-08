@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateProjetUtilisateurTable extends Migration
+return new class extends Migration
 {
 
     public function up(): void
@@ -29,5 +29,5 @@ class CreateProjetUtilisateurTable extends Migration
     {
         Schema::dropIfExists('projet_utilisateur');
     }
-}
+};
 
