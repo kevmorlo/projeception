@@ -1,7 +1,19 @@
 @import url('https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@300&display=swap');
+$hauteur_header: 100px;
+$hauteur_footer: 100px;
+$taille_ordi_min: 900px;
+$taille_tel_max: 800px;
+$taille_gap: 30px;
+$couleur_hover: #1AABE3;
+$couleur_fond: #F5F7FB;
+
+* {
+  box-sizing: border-box;
+}
+
 body{
     font-family: 'Libre Franklin', sans-serif;
-    background-color: #F5F7FB;
+    background-color: $couleur_fond;
     margin: 0;
     padding: 0;
 }
@@ -30,7 +42,6 @@ th{
 
 .header_nav {
   display: flex;
-  top: 0;
   justify-content: space-between;
   align-items: center;
   background-color: #1AABE3;
@@ -46,40 +57,28 @@ th{
   }
 
   & .nav_liste {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     list-style: none;
+    gap: 2%;
+
+    & li {
+      display: block;
+
+      & a {
+        color: whitesmoke;
+        text-decoration: none;
+
+        & :hover {
+          color: $couleur_hover;
+        }
+      }
+    }
   }
 }
 
-.menu {
-  grid-column: 4;
-  grid-row: 1;
-  display: flex;
-  justify-content: flex-end;
-  margin: 10px;
-  gap:20px;
-
-  & button {
-    background-color: #ccc;
-    border: none;
-    color: #fff;
-    font-size: 16px;
-    padding: 8px 12px;
-    margin-left: 10px;
-  }
-}
-
-@media (min-width: 769px) {
-  .menu {
-    gap: 40px;
-  }
-
-  .nav_a {
-      position: absolute;
-      left: 15%;
-  }
-}
-
-@media (max-width: 768px) {
+@media (max-width: $taille_tel_max) {
   .navbar {
     flex-direction: column;
     font-size: smaller;

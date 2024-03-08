@@ -1,4 +1,8 @@
 @import url("https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@300&display=swap");
+* {
+  box-sizing: border-box;
+}
+
 body {
   font-family: "Libre Franklin", sans-serif;
   background-color: #F5F7FB;
@@ -31,7 +35,6 @@ th {
 
 .header_nav {
   display: flex;
-  top: 0;
   justify-content: space-between;
   align-items: center;
   background-color: #1AABE3;
@@ -44,36 +47,24 @@ th {
   margin-top: 10px;
 }
 .header_nav .nav_liste {
-  list-style: none;
-}
-
-.menu {
-  grid-column: 4;
-  grid-row: 1;
   display: flex;
-  justify-content: flex-end;
-  margin: 10px;
-  gap: 20px;
+  justify-content: center;
+  align-items: center;
+  list-style: none;
+  gap: 2%;
 }
-.menu button {
-  background-color: #ccc;
-  border: none;
-  color: #fff;
-  font-size: 16px;
-  padding: 8px 12px;
-  margin-left: 10px;
+.header_nav .nav_liste li {
+  display: block;
+}
+.header_nav .nav_liste li a {
+  color: whitesmoke;
+  text-decoration: none;
+}
+.header_nav .nav_liste li a :hover {
+  color: #1AABE3;
 }
 
-@media (min-width: 769px) {
-  .menu {
-    gap: 40px;
-  }
-  .nav_a {
-    position: absolute;
-    left: 15%;
-  }
-}
-@media (max-width: 768px) {
+@media (max-width: 800px) {
   .navbar {
     flex-direction: column;
     font-size: smaller;

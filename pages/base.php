@@ -25,7 +25,7 @@ $dbh = $bdd->recupDbh();
     <header>
         <nav class="header_nav">
             <a href="" class="nav_logo">
-                <img src="./static/media/img/mydil.webp" alt="MYDil" class="logo_img">
+                <img src="../static/media/img/mydil.webp" alt="MYDil" class="logo_img">
             </a>
             <ul class="nav_liste">
                 <?php
