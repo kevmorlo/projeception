@@ -1,19 +1,19 @@
 {
-  "name": "projeception",
-  "version": "0.1.0",
-  "description": "Ce projet est un projet d'école ayant pour objectif de servir de plateforme pour les apprenants de l'EPSI leur permettant de publier et de gérer leurs projets",
-  "main": "index.js",
-  "scripts": {
-    "watch": "sass --watch ./static/sass/style.scss ./static/css/style.css"
-  },
-  "keywords": [
-    "php",
-    "sass",
-    "EPSI"
-  ],
-  "author": "Kevin Lebeau, Augustin Duval",
-  "license": "Apache-2.0",
-  "devDependencies": {
-    "sass": "^1.69.5"
-  }
+    "name": "projeception",
+    "version": "0.1.0",
+    "description": "Un projet de gestionnaire de projets pour les apprenants de l'EPSI",
+    "license": "Apache 2.0.",
+    "private": true,
+    "type": "module",
+    "scripts": {
+        "dev": "vite",
+        "build": "vite build",
+        "watch": "sass --watch resources/sass/app.scss public/css/app.css"
+    },
+    "devDependencies": {
+        "axios": "^1.6.4",
+        "laravel-vite-plugin": "^1.0.0",
+        "vite": "^5.0.0",
+        "sass": "^1.71.1"
+    }
 }

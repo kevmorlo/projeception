@@ -17,13 +17,10 @@ Ceci est un projet consistant à concevoir un logiciel permettant de gérer les 
 - HTML
 - CSS
 
-    Modèle physique de données :
-
-  ![Modèle physique de donnée](database/my_projeception.svg)
-
 ## Framework utilisés
 
-Aucun framework utilisé pour ce projet
+- Laravel
+- Sass
 
 ## Contenu
 
@@ -41,32 +38,26 @@ Le projet est adapté pour les plateformes mobiles, tablettes et ordinateurs (sa
 
 ### Prérequis
 
-- Un serveur web (php, apache, mysql/mariadb)
-- Composer
+- Laravel
 - Node (facultatif)
 
 ### Installation
 
-1. Importez les dépendances Composer du projet avec la commande : 
-```bash
-composer install
-```
-
-2. (Optionnel) Pour pouvoir modifier les styles du projet, installez les dépendances de Node avec la commande : 
+1. (Optionnel) Pour pouvoir modifier les styles du projet, installez les dépendances de Node avec la commande : 
 ```bash
 npm install
 ```
 
-3. (Optionnel) Pour lancer le compilateur de Sass, tapez la commande : 
+2. (Optionnel) Pour lancer le compilateur de Sass, tapez la commande : 
 ```bash
 npm run watch
 ```
 
-4. Copiez le fichier ```.env.example``` et renommez le ```.env```.
+3. Copiez le fichier ```.env.example``` et renommez le ```.env```.
 
-5. Vous devez importer le fichier sql présent dans le dossier database dans votre base de données.
+4. Vous devez importer le fichier sql présent dans le dossier database dans votre base de données.
 
-6. Lancez le serveur.
+5. Lancez le serveur.
 
 ## License
 
