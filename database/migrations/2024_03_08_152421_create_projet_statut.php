@@ -4,24 +4,20 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
+class CreateStatutProjetsTable extends Migration
 {
-    /**
-     * Run the migrations.
-     */
+
     public function up(): void
     {
-        Schema::create('projet_statut', function (Blueprint $table) {
+        Schema::create('statut_projets', function (Blueprint $table) {
             $table->id();
+            $table->string('nom', 20);
             $table->timestamps();
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
-        Schema::dropIfExists('projet_statut');
+        Schema::dropIfExists('statut_projets');
     }
-};
+}
