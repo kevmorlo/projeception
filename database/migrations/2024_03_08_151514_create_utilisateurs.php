@@ -22,13 +22,13 @@ return new class extends Migration
             $table->string('telephone', 20)->nullable();
             $table->text('description')->nullable();
             $table->tinyInteger('est_banni')->default(0);
-            $table->unsignedBigInteger('Statuts_id')->default(1);
-            $table->unsignedBigInteger('Categories_id')->nullable();
+            $table->unsignedBigInteger('Statut_id')->default(1);
+            $table->unsignedBigInteger('Categorie_id')->nullable();
             $table->timestamps();
 
             // Clés étrangères
-            $table->foreign('Statuts_id')->references('id')->on('statuts')->onDelete('no action')->onUpdate('no action');
-            $table->foreign('Categories_id')->references('id')->on('categories')->onDelete('no action')->onUpdate('no action');
+            $table->foreign('Statut_id')->references('id')->on('statuts')->onDelete('no action')->onUpdate('no action');
+            $table->foreign('Categorie_id')->references('id')->on('categories')->onDelete('no action')->onUpdate('no action');
         });
     }
     public function down(): void
