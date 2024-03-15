@@ -38,6 +38,7 @@ Le projet est adapté pour les plateformes mobiles, tablettes et ordinateurs (sa
 ### Prérequis
 
 - Laravel
+- Composer (Laravel)
 - Node (facultatif)
 
 ### Installation
@@ -59,9 +60,10 @@ npm run watch
 
 4. Copiez le fichier ```.env.example``` et renommez le ```.env```.
 
-5. Vous devez importer le fichier sql présent dans le dossier database dans votre base de données.
-
-6. Lancez le serveur.
+5. Lancez le serveur avec artisan : 
+```bash
+php artisan serve
+```
 
 ## License
 

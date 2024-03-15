@@ -15,7 +15,8 @@ return new class extends Migration
         Schema::create('utilisateurs', function (Blueprint $table) {
             $table->id();
             $table->string('pseudonyme', 15);
-            $table->string('mail', 39)->unique();
+            $table->string('email', 39)->unique();
+            $table->timestamp('email_verifie_a')->nullable();
             $table->longText('mdp');
             $table->string('nom', 39)->nullable();
             $table->string('prenom', 39)->nullable();
@@ -24,6 +25,7 @@ return new class extends Migration
             $table->tinyInteger('est_banni')->default(0);
             $table->unsignedBigInteger('Statut_id')->default(1);
             $table->unsignedBigInteger('Categorie_id')->nullable();
+            $table->rememberToken();
             $table->timestamps();
 
             // Clés étrangères
