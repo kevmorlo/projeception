@@ -3,22 +3,23 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-
 return new class extends Migration
 {
 
     public function up(): void
     {
-        Schema::create('categories', function (Blueprint $table) {
+        Schema::create('projects', function (Blueprint $table) {
             $table->id();
-            $table->string('nom', 39);
+            $table->string('title', 55);
+            $table->text('description')->nullable();
+            $table->foreignId('status_id')->constrained();
             $table->timestamps();
         });
     }
 
-
     public function down(): void
     {
-        Schema::dropIfExists('categories');
+        Schema::dropIfExists('projects');
     }
 };
+

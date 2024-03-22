@@ -4,14 +4,10 @@ Ceci est un projet consistant à concevoir un logiciel permettant de gérer les 
 
 ## Groupe sur le projet
 
-----------------------------
-
 - Kevin LEBEAU : <https://github.com/kevmorlo>
 - Augustin DUVAL : <https://github.com/Flys3r>
 
 ## Langages utilisés
-
-----------------------------
 
 - PHP
 - HTML
@@ -39,7 +35,7 @@ Le projet est adapté pour les plateformes mobiles, tablettes et ordinateurs (sa
 
 - Laravel
 - Composer (Laravel)
-- Node (facultatif)
+- Node (Laravel)
 
 ### Installation
 
@@ -47,19 +43,19 @@ Le projet est adapté pour les plateformes mobiles, tablettes et ordinateurs (sa
 ```bash
 composer install
 ```
-2. (Optionnel) Pour pouvoir modifier les styles du projet, installez les dépendances de Node avec la commande : 
+2. Installez les dépendances de Node avec la commande : 
 ```bash
 npm install
 ```
-3. (Optionnel) Pour lancer le compilateur de Sass, tapez la commande : 
-```bash
-npm run watch
-```
-4. Copiez le fichier ```.env.example``` et renommez le ```.env```.
-5. Modifiez les données de celui-ci par celles qui correspondent à votre environnement.
-6. Lancez le serveur avec artisan : 
+3. Copiez le fichier ```.env.example``` et renommez le ```.env```.
+4. Modifiez les données de celui-ci par celles qui correspondent à votre environnement.
+5. Lancez le serveur avec artisan : 
 ```bash
 php artisan serve
+```
+6. Créez un lien symbolique pour héberger les fichiers des utilisateurs : 
+```bash
+php artisan storage:link
 ```
 
 ## License

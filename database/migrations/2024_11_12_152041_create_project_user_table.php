@@ -9,16 +9,17 @@ return new class extends Migration
 
     public function up(): void
     {
-        Schema::create('statuts', function (Blueprint $table) {
-            $table->id();
-            $table->string('nom', 20);
+        Schema::create('project_user', function (Blueprint $table) {
+            $table->foreignId('user_id')->constrained();
+            $table->foreignId('project_id')->constrained();
+            $table->primary(['user_id', 'project_id']);
             $table->timestamps();
         });
     }
 
     public function down(): void
     {
-        Schema::dropIfExists('statuts');
+        Schema::dropIfExists('project_user');
     }
 };
 

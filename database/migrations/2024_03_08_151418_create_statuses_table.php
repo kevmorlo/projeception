@@ -9,15 +9,15 @@ return new class extends Migration
 
     public function up(): void
     {
-        Schema::create('statut_projets', function (Blueprint $table) {
+        Schema::create('statuses', function (Blueprint $table) {
             $table->id();
-            $table->string('nom', 20);
+            $table->string('name', 20);
             $table->timestamps();
         });
     }
 
     public function down(): void
     {
-        Schema::dropIfExists('statut_projets');
+        Schema::dropIfExists('statuses');
     }
 };
