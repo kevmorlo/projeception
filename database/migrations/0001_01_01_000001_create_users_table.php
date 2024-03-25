@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->string('name', 39);
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
@@ -23,9 +23,12 @@ return new class extends Migration
             $table->string('description', 2000)->nullable();
             $table->rememberToken();
             $table->foreignId('current_team_id')->nullable();
+            $table->unsignedBigInteger('role_id')->default("1");
             $table->string('profile_photo_path', 2048)->nullable();
             $table->boolean('is_banned')->default(false);
             $table->timestamps();
+
+            $table->foreign('role_id')->references('id')->on('roles')->cascadeOnDelete();
         });
 
         Schema::create('password_reset_tokens', function (Blueprint $table) {
