@@ -47,11 +47,11 @@ const submit = () => {
 
         <div class="mb-4 text-sm text-gray-600">
             <template v-if="! recovery">
-                Veuillez confirmer l'accès à votre compte en entrant le code d'authentification fourni par votre application d'A2F.
+                Please confirm access to your account by entering the authentication code provided by your authenticator application.
             </template>
 
             <template v-else>
-                Veuillez confirmer l'accès à votre compte en entrant un de vos codes de récupération d'urgence.
+                Please confirm access to your account by entering one of your emergency recovery codes.
             </template>
         </div>
 
@@ -87,16 +87,16 @@ const submit = () => {
             <div class="flex items-center justify-end mt-4">
                 <button type="button" class="text-sm text-gray-600 hover:text-gray-900 underline cursor-pointer" @click.prevent="toggleRecovery">
                     <template v-if="! recovery">
-                        Utiliser un code de récupération
+                        Use a recovery code
                     </template>
 
                     <template v-else>
-                        Utiliser un code d'authentification
+                        Use an authentication code
                     </template>
                 </button>
 
                 <PrimaryButton class="ms-4" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
-                    Se connecter
+                    Log in
                 </PrimaryButton>
             </div>
         </form>

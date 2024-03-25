@@ -27,17 +27,17 @@ const verificationLinkSent = computed(() => props.status === 'verification-link-
         </template>
 
         <div class="mb-4 text-sm text-gray-600">
-            Avant de continuer, pouvez-vous vérifier votre adresse email en cliquant sur le lien que nous vous avons envoyé? Si vous ne l'avez pas reçu, nous enverrons un autre lien de vérification.
+            Before continuing, could you verify your email address by clicking on the link we just emailed to you? If you didn't receive the email, we will gladly send you another.
         </div>
 
         <div v-if="verificationLinkSent" class="mb-4 font-medium text-sm text-green-600">
-            Un nouveau lien de vérification a été envoyé à l'adresse email que vous avez fournie lors de votre inscription.
+            A new verification link has been sent to the email address you provided in your profile settings.
         </div>
 
         <form @submit.prevent="submit">
             <div class="mt-4 flex items-center justify-between">
                 <PrimaryButton :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
-                    Renvoyer le lien de vérification
+                    Resend Verification Email
                 </PrimaryButton>
 
                 <div>
@@ -45,7 +45,7 @@ const verificationLinkSent = computed(() => props.status === 'verification-link-
                         :href="route('profile.show')"
                         class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                     >
-                        Modifier son profil</Link>
+                        Edit Profile</Link>
 
                     <Link
                         :href="route('logout')"
@@ -53,7 +53,7 @@ const verificationLinkSent = computed(() => props.status === 'verification-link-
                         as="button"
                         class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 ms-2"
                     >
-                        Se déconnecter
+                        Log Out
                     </Link>
                 </div>
             </div>

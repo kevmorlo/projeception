@@ -27,7 +27,7 @@ const submit = () => {
 </script>
 
 <template>
-    <Head title="Réinitialisation de mot de passe" />
+    <Head title="Reset Password" />
 
     <AuthenticationCard>
         <template #logo>
@@ -77,7 +77,7 @@ const submit = () => {
 
             <div class="flex items-center justify-end mt-4">
                 <PrimaryButton :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
-                    Réinitialiser le mot de passe
+                    Reset Password
                 </PrimaryButton>
             </div>
         </form>
