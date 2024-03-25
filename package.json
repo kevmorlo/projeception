@@ -26,5 +26,5 @@
         "vue": "^3.2.31",
         "webpack": "^5.90.3"
     },
-    "dependencies": []
+    "dependencies": {}
 }
