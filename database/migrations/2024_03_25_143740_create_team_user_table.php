@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('team_id');
             $table->foreignId('user_id');
-            $table->string('role')->nullable();
+            $table->string('role', 39)->nullable();
             $table->timestamps();
 
             $table->unique(['team_id', 'user_id']);
