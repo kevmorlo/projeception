@@ -16,7 +16,7 @@ defineProps({
     <AppLayout title="Team Settings">
         <template #header>
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                Team Settings
+                Paramètres de l'équipe
             </h2>
         </template>
 

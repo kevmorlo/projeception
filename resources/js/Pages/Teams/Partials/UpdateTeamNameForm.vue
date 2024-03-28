@@ -27,11 +27,11 @@ const updateTeamName = () => {
 <template>
     <FormSection @submitted="updateTeamName">
         <template #title>
-            Team Name
+            Nom de l'équipe
         </template>
 
         <template #description>
-            The team's name and owner information.
+            Le nom de l'équipe et les infos de son propriétaire.
         </template>
 
         <template #form>
@@ -69,11 +69,11 @@ const updateTeamName = () => {
 
         <template v-if="permissions.canUpdateTeam" #actions>
             <ActionMessage :on="form.recentlySuccessful" class="me-3">
-                Saved.
+                Sauvegardé.
             </ActionMessage>
 
             <PrimaryButton :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
-                Save
+                Sauvegarder
             </PrimaryButton>
         </template>
     </FormSection>

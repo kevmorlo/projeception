@@ -27,37 +27,37 @@ const deleteTeam = () => {
 <template>
     <ActionSection>
         <template #title>
-            Delete Team
+            Supprimer l'équipe
         </template>
 
         <template #description>
-            Permanently delete this team.
+            Supprimer définitivement cette équipe.
         </template>
 
         <template #content>
             <div class="max-w-xl text-sm text-gray-600">
-                Once a team is deleted, all of its resources and data will be permanently deleted. Before deleting this team, please download any data or information regarding this team that you wish to retain.
+                Une fois l'équipe supprimée, toutes ces données seront perdues. Avant de la supprimer, veuillez télécharger toute donnée que vous souhaitez concerver concernant cette équipe.
             </div>
 
             <div class="mt-5">
                 <DangerButton @click="confirmTeamDeletion">
-                    Delete Team
+                    Supprimer l'équipe
                 </DangerButton>
             </div>
 
-            <!-- Delete Team Confirmation Modal -->
+            <!-- Supprimer l'équipe Confirmation Modal -->
             <ConfirmationModal :show="confirmingTeamDeletion" @close="confirmingTeamDeletion = false">
                 <template #title>
-                    Delete Team
+                    Supprimer l'équipe
                 </template>
 
                 <template #content>
-                    Are you sure you want to delete this team? Once a team is deleted, all of its resources and data will be permanently deleted.
+                    Êtes vous sûr de vouloir supprimer cette équipe? Une fois supprimée, toutes ces données seront perdues.
                 </template>
 
                 <template #footer>
                     <SecondaryButton @click="confirmingTeamDeletion = false">
-                        Cancel
+                        Annuler
                     </SecondaryButton>
 
                     <DangerButton
@@ -66,7 +66,7 @@ const deleteTeam = () => {
                         :disabled="form.processing"
                         @click="deleteTeam"
                     >
-                        Delete Team
+                        Supprimer l'équipe
                     </DangerButton>
                 </template>
             </ConfirmationModal>
