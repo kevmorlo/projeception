@@ -34,7 +34,7 @@ defineProps({
                         :href="route('dashboard')"
                         class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white"
                     >
-                        Dashboard
+                        Tableau de bord
                     </Link>
 
                     <template v-else>
@@ -80,7 +80,7 @@ defineProps({
             </div>
         </section>
 
-        <footer class="py-16 text-center text-sm text-black dark:text-white/70">
+        <footer class="py-16 text-center text-sm text-black">
             Laravel v{{ laravelVersion }} (PHP v{{ phpVersion }})
         </footer>
     </div>
