@@ -29,7 +29,7 @@ export default {
     methods: {
         async updateProject() {
             try {
-                const response = await axios.put(`/api/projects/${this.project.id}`, this.project);
+                const response = await axios.put(`/projects/${this.project.id}`, this.project);
                 this.$router.push(`/projects/${this.project.id}`);
             } catch (error) {
                 console.error(error);
@@ -38,7 +38,7 @@ export default {
     },
     async created() {
         try {
-            const response = await axios.get(`/api/projects/${this.$route.params.id}`);
+            const response = await axios.get(`/projects/${this.$route.params.id}`);
             this.project = response.data;
         } catch (error) {
             console.error(error);

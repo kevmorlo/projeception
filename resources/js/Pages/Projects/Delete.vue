@@ -15,7 +15,7 @@ export default {
     methods: {
         async deleteProject() {
             try {
-                let response = await this.$axios.delete(`/api/projects/${this.projectId}`);
+                let response = await this.$axios.delete(`/projects/${this.projectId}`);
                 if (response.status === 200) {
                     this.$emit('projectDeleted', this.projectId);
                     this.$notify({

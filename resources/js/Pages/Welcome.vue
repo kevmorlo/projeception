@@ -1,6 +1,5 @@
 <script setup>
 import AuthenticationCardLogo from '@/Components/AuthenticationCardLogo.vue';
-import Navbar from '@/Components/Navbar.vue';
 import { Head, Link } from '@inertiajs/vue3';
 
 defineProps({
@@ -25,8 +24,10 @@ defineProps({
     <div class="overflow-hidden">
         <Head title="Bienvenue" />
         <header>
-            <nav v-if="canLogin" class="bg-blue-400 -mx-3 flex flex-1 justify-between pl-8">
-                <AuthenticationCardLogo />
+            <nav v-if="canLogin" class="bg-blue-400 -mx-3 flex flex-1 justify-between items-center pl-8">
+                <Link :href="'/'">
+                    <img src="/images/mydil.webp" class="h-10" alt="Logo" />
+                </Link>
                 <div class="m-8">
                     <Link
                         v-if="$page.props.auth.user"
