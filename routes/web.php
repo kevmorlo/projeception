@@ -27,3 +27,5 @@ Route::get('/projects', [App\Http\Controllers\ProjectController::class, 'index']
 
 Route::get('/projects/{project}', [App\Http\Controllers\ProjectController::class, 'show'])->name('projects.show');
 // Route::post('/projects', [App\Http\Controllers\ProjectController::class, 'store'])->middleware('auth:sanctum');
+
+Route::get('/teams/{team}/projects', [App\Http\Controllers\TeamProjectController::class, 'index'])->name('team.projects');

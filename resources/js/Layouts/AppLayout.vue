@@ -82,6 +82,11 @@ const logout = () => {
                                             </div>
 
                                             <!-- Team Settings -->
+
+                                            <DropdownLink :href="route('team.projects', $page.props.auth.user.current_team)">
+                                                Projets de l'équipe
+                                            </DropdownLink>
+
                                             <DropdownLink :href="route('teams.show', $page.props.auth.user.current_team)">
                                                 Paramètres de l'équipe
                                             </DropdownLink>
