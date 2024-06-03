@@ -8,4 +8,15 @@ use Illuminate\Database\Eloquent\Model;
 class Project extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'title', 
+        'description',
+        'team_id',
+    ];
+
+    public function team()
+    {
+        return $this->belongsTo(Team::class);
+    }
 }

@@ -1,6 +1,18 @@
-<script setup>
-    import ApplicationLogo from '@/Components/ApplicationLogo.vue';
+<script>
     import axios from 'axios';
+
+    export default {
+        data() {
+            return {
+                project: null,
+            };
+        },
+        async created() {
+            const projectId = this.$route.params.project;
+            const response = await axios.get(`/projects/${projectId}`);
+            this.project = response.data;
+        },
+    };
 </script>
 
 <template>
@@ -11,19 +23,3 @@
         <span>{{ project['Team'] }}</span>
     </div>
 </template>
-
-<script>
-
-export default {
-    data() {
-        return {
-            project: null,
-        };
-    },
-    async created() {
-        const projectId = this.$route.params.project;
-        const response = await axios.get(`/projects/${projectId}`);
-        this.project = response.data;
-    },
-};
-</script>

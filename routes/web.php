@@ -23,9 +23,18 @@ Route::middleware([
     })->name('dashboard');
 });
 
-Route::get('/projects', [App\Http\Controllers\ProjectController::class, 'index'])->name('projects.index');
+Route::get('/projects', [App\Http\Controllers\ProjectController::class, 'index'])->name('projects.index')->middleware('auth:sanctum');
 
-Route::get('/projects/{project}', [App\Http\Controllers\ProjectController::class, 'show'])->name('projects.show');
-// Route::post('/projects', [App\Http\Controllers\ProjectController::class, 'store'])->middleware('auth:sanctum');
+Route::get('/projects/{project}', [App\Http\Controllers\ProjectController::class, 'show'])->name('projects.show')->middleware('auth:sanctum');
 
-Route::get('/teams/{team}/projects', [App\Http\Controllers\TeamProjectController::class, 'index'])->name('team.projects');
+Route::get('/projects/create', function () {
+    return Inertia::render('Projects/Create');
+})->name('projects.create')->middleware('auth:sanctum');
+
+Route::post('/projects', [App\Http\Controllers\ProjectController::class, 'store'])->name('projects.store')->middleware('auth:sanctum');
+
+Route::get('/projects/{project}/edit', function () {
+    return Inertia::render('Projects/Edit');
+})->name('projects.edit')->middleware('auth:sanctum');
+
+Route::get('/teams/{team}/projects', [App\Http\Controllers\TeamProjectController::class, 'index'])->name('team.projects')->middleware('auth:sanctum');

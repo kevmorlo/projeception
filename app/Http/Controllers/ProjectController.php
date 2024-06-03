@@ -13,29 +13,19 @@ class ProjectController extends Controller
     public function index()
     {
         $projects = Project::with('team')->get();
-
-        $data = [];
-        $i = 0;
-        
-        foreach ($projects as $project) {
-            $i++;
-            $data[$i] = [
+    
+        $data = $projects->map(function ($project) {
+            return [
                 'ID' => $project->id,
                 'Title' => $project->title,
                 'Description' => $project->description,
                 'Team' => $project->team->name
             ];
-        }
-        
-        return inertia('Projects/Index', ['projects' => $data]);
-    }
-
-    /**
-     * Show the form for creating a new project.
-     */
-    public function create()
-    {
-        // $project = new Project();
+        });
+    
+        return inertia('Projects/Index', [
+            'projects' => $data
+        ]);
     }
 
     /**
@@ -43,7 +33,18 @@ class ProjectController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        if (!auth()->user()->hasTeamPermission($request->input('team_id'), 'create')) {
+            abort(403);
+        } else {
+            $project = new Project();
+            $project->title = $request->input('title');
+            $project->description = $request->input('description');
+            $project->team_id = $request->input('team_id');
+
+            $project->save();
+
+            return back()->with('success', 'Projet créé avec succès.');
+        }
     }
 
     /**
@@ -51,15 +52,17 @@ class ProjectController extends Controller
      */
     public function show(Project $project)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified project.
-     */
-    public function edit(Project $project)
-    {
-        //
+        $data = Project::with('team')->where('id', $project->id)->get()->map(function ($project) {
+            return [
+                'ID' => $project->id,
+                'Title' => $project->title,
+                'Description' => $project->description,
+                'Team' => $project->team->name
+            ];
+        })->first();
+        return inertia('Projects/Show', [
+            'project' => $data
+        ]);
     }
 
     /**

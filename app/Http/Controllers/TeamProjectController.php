@@ -13,7 +13,13 @@ class TeamProjectController extends Controller
      */
     public function index($team)
     {
-        $teamProjects = Team::find($team)->projects;
-        return inertia('teamProjects.index', compact('teamProjects'));
+        if (!auth()->user()->hasTeamPermission($team, 'view')) {
+            abort(403);
+        } else {
+            return inertia('Teams/Projects', [
+                'teamProjects' => Team::findOrFail($team)->projects,
+                'teamName' => Team::find($team)->name,
+            ]);
+        }
     }
 }
