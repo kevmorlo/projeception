@@ -55,3 +55,9 @@ Route::delete('/projects/{project}', [App\Http\Controllers\ProjectController::cl
 
 
 Route::get('/teams/{team}/projects', [App\Http\Controllers\TeamProjectController::class, 'index'])->name('team.projects')->middleware('auth:sanctum');
+
+
+
+Route::get('/error', function (Request $request) {
+    return Inertia::render('Errors/Error', $request->all());
+});

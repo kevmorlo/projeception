@@ -21,3 +21,14 @@ createInertiaApp({
         color: '#4B5563',
     },
 });
+
+Inertia.onError(error => {
+    if (error.response) {
+        return Inertia.visit('/error', { 
+            data: { 
+                code: error.response.status, 
+                message: error.response.data.message 
+            } 
+        });
+    }
+});
