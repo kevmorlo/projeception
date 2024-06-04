@@ -23,6 +23,8 @@ Route::middleware([
     })->name('dashboard');
 });
 
+
+
 Route::get('/projects', [App\Http\Controllers\ProjectController::class, 'index'])->name('projects.index')->middleware('auth:sanctum');
 
 Route::get('/projects/{project}', [App\Http\Controllers\ProjectController::class, 'show'])->name('projects.show')->middleware('auth:sanctum');
@@ -36,5 +38,11 @@ Route::post('/projects', [App\Http\Controllers\ProjectController::class, 'store'
 Route::get('/projects/{project}/edit', function () {
     return Inertia::render('Projects/Edit');
 })->name('projects.edit')->middleware('auth:sanctum');
+
+Route::put('/projects/{project}', [App\Http\Controllers\ProjectController::class, 'update'])->name('projects.update')->middleware('auth:sanctum');
+
+Route::delete('/projects/{project}', [App\Http\Controllers\ProjectController::class, 'destroy'])->name('projects.destroy')->middleware('auth:sanctum');
+
+
 
 Route::get('/teams/{team}/projects', [App\Http\Controllers\TeamProjectController::class, 'index'])->name('team.projects')->middleware('auth:sanctum');
