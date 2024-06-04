@@ -8,4 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class Status extends Model
 {
     use HasFactory;
+
+    protected $fillable = ['name'];
+
+    public function projects()
+    {
+        return $this->hasMany(Project::class);
+    }
 }

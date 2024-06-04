@@ -6,6 +6,7 @@ use App\Models\Project;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 
+
 class ProjectController extends Controller
 {
     /**
@@ -13,14 +14,15 @@ class ProjectController extends Controller
      */
     public function index()
     {
-        $projects = Project::with('team')->get();
-    
+        $projects = Project::with('team')->where('status_id', 2)->get();
+        
         $data = $projects->map(function ($project) {
             return [
-                'ID' => $project->id,
-                'Title' => $project->title,
-                'Description' => $project->description,
-                'Team' => $project->team->name
+            'Id' => $project->id,
+            'Title' => $project->title,
+            'Description' => $project->description,
+            'Team' => $project->team->name,
+            'TeamId' => $project->team_id
             ];
         });
     
@@ -59,21 +61,26 @@ class ProjectController extends Controller
      */
     public function show(Project $project)
     {
-        try {
-            $data = Project::with('team')->where('id', $project->id)->get()->map(function ($project) {
-                return [
-                    'ID' => $project->id,
-                    'Title' => $project->title,
-                    'Description' => $project->description,
-                    'Team' => $project->team->name
-                ];
-            })->first();
-            return inertia('Projects/Show', [
-                'project' => $data
-            ]);
-        } catch (\Exception $e) {
-            Log::error('Une erreur s\'est produite lors de l\'affichage du projet.'.$e->getMessage());
-            return back()->with('error', 'Une erreur s\'est produite lors de l\'affichage du projet.');
+        if (!auth()->user()->hasTeamPermission($project->team_id, 'view')) {
+            abort(403);
+        } else {
+            try {
+                $data = Project::with('team')->where('id', $project->id)->get()->map(function ($project) {
+                    return [
+                        'Id' => $project->id,
+                        'Title' => $project->title,
+                        'Description' => $project->description,
+                        'Team' => $project->team->name,
+                        'TeamId' => $project->team_id
+                    ];
+                })->first();
+                return inertia('Projects/Show', [
+                    'project' => $data
+                ]);
+            } catch (\Exception $e) {
+                Log::error('Une erreur s\'est produite lors de l\'affichage du projet.'.$e->getMessage());
+                return back()->with('error', 'Une erreur s\'est produite lors de l\'affichage du projet.');
+            }
         }
     }
 
@@ -82,20 +89,20 @@ class ProjectController extends Controller
      */
     public function update(Request $request, Project $project)
     {
-        try {
-            if (!auth()->user()->hasTeamPermission($project->team_id, 'update')) {
-                abort(403);
-            } else {
+        if (!auth()->user()->hasTeamPermission($project->team_id, 'update')) {
+            abort(403);
+        } else {
+            try {
                 $project->title = $request->input('title');
                 $project->description = $request->input('description');
                 $project->save();
 
                 Log::info('Projet mis à jour avec succès.' . $project->id);
                 return back()->with('success', 'Projet mis à jour avec succès.');
+            } catch (\Exception $e) {
+                Log::error('Une erreur s\'est produite lors de la mise à jour du projet. ' . $e->getMessage());
+                return back()->with('error', 'Une erreur s\'est produite lors de la mise à jour du projet.');
             }
-        } catch (\Exception $e) {
-            Log::error('Une erreur s\'est produite lors de la mise à jour du projet. ' . $e->getMessage());
-            return back()->with('error', 'Une erreur s\'est produite lors de la mise à jour du projet.');
         }
     }
 

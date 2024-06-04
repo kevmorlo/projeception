@@ -24,6 +24,15 @@ Route::middleware([
 });
 
 
+Route::get('/mentions-legales', function () {
+    return Inertia::render('MentionsLegales');
+})->name('mentions-legales');
+
+Route::get('/politique-confidentialite', function () {
+    return Inertia::render('PolitiqueConfidentialite');
+})->name('politique-confidentialite');
+
+
 
 Route::get('/projects', [App\Http\Controllers\ProjectController::class, 'index'])->name('projects.index')->middleware('auth:sanctum');
 

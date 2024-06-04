@@ -13,10 +13,16 @@ class Project extends Model
         'title', 
         'description',
         'team_id',
+        'status_id'
     ];
 
     public function team()
     {
         return $this->belongsTo(Team::class);
+    }
+
+    public function status()
+    {
+        return $this->belongsTo(Status::class);
     }
 }
