@@ -1,6 +1,7 @@
 <script setup>
 import AppLayout from '@/Layouts/AppLayout.vue';
 import Welcome from '@/Components/Welcome.vue';
+import Footer from '@/Components/Footer.vue';
 </script>
 
 <template>
@@ -18,5 +19,7 @@ import Welcome from '@/Components/Welcome.vue';
                 </div>
             </div>
         </div>
+
+        <Footer />
     </AppLayout>
 </template>

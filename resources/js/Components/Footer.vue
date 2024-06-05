@@ -1,5 +1,6 @@
 <script>
     import { Link } from '@inertiajs/vue3';
+    import axios from 'axios';
 
     /**
      * This component represents the footer section of the application.
@@ -10,33 +11,36 @@
         components: {
             Link,
         },
-        props: {
-            laravelVersion: {
-                type: String,
-                required: true,
-            },
-            phpVersion: {
-                type: String,
-                required: true,
-            },
+        data() {
+            return {
+                laravelVersion: '',
+                phpVersion: '',
+            };
         },
+        created() {
+            axios.get('/api/versions').then(response => {
+                this.laravelVersion = response.data.laravelVersion;
+                this.phpVersion = response.data.phpVersion;
+            })
+        }
     };
 </script>
 
 <template>
-    <footer class="bg-white border-t border-gray-200">
-        <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center">
-                <div class="flex space-x-6">
-                    <span class="text-sm text-gray-500">© 2024 My Projeception. Tous droits réservés.</span>
-                    <Link :href="route('mentionsLegales')">Mentions légales</Link>
-                    <Link :href="route('politiqueConfidentialite')">Politique de confidentialité</Link>
-                    <a href="/politique-confidentialite">Politique de confidentialité</a>
-                    <span class="py-16 text-center text-sm text-black">
-                        Laravel v{{ laravelVersion }} (PHP v{{ phpVersion }})
-                    </span>
+    <div class="pt-10 bg-gray-100">
+        <footer class="mt-auto inset-x-0 bottom-0 bg-white border-t border-gray-200">
+            <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+                <div class="flex justify-between items-center">
+                    <div class="flex space-x-6">
+                        <span class="text-gray-500">© 2024 My Projeception. Tous droits réservés.</span>
+                        <Link :href="route('terms')">Mentions légales</Link>
+                        <Link :href="route('policy')">Politique de confidentialité</Link>
+                        <span class="text-gray-500">
+                            Laravel v{{ laravelVersion }} (PHP v{{ phpVersion }})
+                        </span>
+                    </div>
                 </div>
             </div>
-        </div>
-    </footer>
+        </footer>
+    </div>
 </template>

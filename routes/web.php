@@ -3,6 +3,7 @@
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
+use App\Http\Controllers\ProjectController;
 
 Route::get('/', function () {
     return Inertia::render('Welcome', [
@@ -24,33 +25,35 @@ Route::middleware([
 });
 
 
-Route::get('/mentions-legales', function () {
-    return Inertia::render('MentionsLegales');
-})->name('mentions-legales');
+Route::get('/terms', function () {
+    $terms = File::get(resource_path('markdown/terms.md'));
+    return Inertia::render('TermsOfService', ['terms' => $terms]);
+})->name('terms');
 
-Route::get('/politique-confidentialite', function () {
-    return Inertia::render('PolitiqueConfidentialite');
-})->name('politique-confidentialite');
+Route::get('/policy', function () {
+    $policy = File::get(resource_path('markdown/policy.md'));
+    return Inertia::render('PrivacyPolicy', ['policy' => $policy]);
+})->name('policy');
 
 
 
-Route::get('/projects', [App\Http\Controllers\ProjectController::class, 'index'])->name('projects.index')->middleware('auth:sanctum');
+Route::get('/projects', [ProjectController::class, 'index'])->name('projects.index')->middleware('auth:sanctum');
 
-Route::get('/projects/{project}', [App\Http\Controllers\ProjectController::class, 'show'])->name('projects.show')->middleware('auth:sanctum');
+Route::get('/projects/{project}', [ProjectController::class, 'show'])->name('projects.show')->middleware('auth:sanctum');
 
 Route::get('/projects/create', function () {
     return Inertia::render('Projects/Create');
 })->name('projects.create')->middleware('auth:sanctum');
 
-Route::post('/projects', [App\Http\Controllers\ProjectController::class, 'store'])->name('projects.store')->middleware('auth:sanctum');
+Route::post('/projects', [ProjectController::class, 'store'])->name('projects.store')->middleware('auth:sanctum');
 
 Route::get('/projects/{project}/edit', function () {
     return Inertia::render('Projects/Edit');
 })->name('projects.edit')->middleware('auth:sanctum');
 
-Route::put('/projects/{project}', [App\Http\Controllers\ProjectController::class, 'update'])->name('projects.update')->middleware('auth:sanctum');
+Route::put('/projects/{project}', [ProjectController::class, 'update'])->name('projects.update')->middleware('auth:sanctum');
 
-Route::delete('/projects/{project}', [App\Http\Controllers\ProjectController::class, 'destroy'])->name('projects.destroy')->middleware('auth:sanctum');
+Route::delete('/projects/{project}', [ProjectController::class, 'destroy'])->name('projects.destroy')->middleware('auth:sanctum');
 
 
 

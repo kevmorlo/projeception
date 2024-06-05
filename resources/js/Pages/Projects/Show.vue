@@ -16,7 +16,25 @@
                 project: this.$page.props.project,
             };
         },
-    };
+        methods: {
+                async updateProject() {
+                try {
+                    const response = await axios.put(`/projects/${this.project.id}`, this.project);
+                    this.$router.push(`/projects/${this.project.id}`);
+                } catch (error) {
+                    console.error(error);
+                }
+            }
+        },
+        async created() {
+            try {
+                const response = await axios.get(`/projects/${this.$route.params.id}`);
+                this.project = response.data;
+            } catch (error) {
+                console.error(error);
+            }
+        }
+    }
 </script>
 
 <template>
@@ -37,14 +55,21 @@
                         <h1 class="mt-8 text-2xl font-medium text-gray-900">
                             {{ project['Title'] }}
                         </h1>
-                        <div class="py-4 flex justify-between items-center">
-                            <!-- <span>{{ project['Title'] }}</span> -->
-                            <span>Identifiant :{{ project['ID'] }}</span>
-                            <Link :href="route('teams.show', project['TeamId'])">
-                                <span>Equipe du projet :{{ project['Team'] }}</span>
-                            </Link>
-                            <span>{{ project['Description'] }}</span>
-                        </div>
+                        <form @submit="updateProject">
+                            <div class="py-4 flex justify-between items-center">
+                                <label for="title">Titre</label>
+                                <input v-model="project['Title']" id="title" type="text" class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm">
+                                <label for="id">Identifiant</label>
+                                <span id="id">{{ project['ID'] }}</span>
+                                <label for="team">Equipe</label>
+                                <Link :href="route('teams.show', project['TeamId'])">
+                                    <input v-model="project['Team']" id="team" type="text" class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm">
+                                </Link>
+                                <label for="description">Description</label>
+                                <input v-model="project['Description']" id="description" type="text" class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm">
+                                <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Enregistrer</button>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>

@@ -28,7 +28,7 @@ const logout = () => {
 </script>
 
 <template>
-    <div>
+    <div class="flex flex-col min-h-screen">
         <Head :title="title" />
 
         <Banner />
