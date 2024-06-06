@@ -1,37 +1,50 @@
-<template>
-    <div>
-        <button @click="deleteProject">Supprimer le projet</button>
-    </div>
-</template>
-
 <script>
 export default {
     props: {
-        projectId: {
-            type: String,
+        project: {
+            type: Object,
             required: true
         }
     },
+    data() {
+        return {
+            showModal: false,
+        };
+    },
     methods: {
-        async deleteProject() {
-            try {
-                let response = await this.$axios.delete(`/projects/${this.projectId}`);
-                if (response.status === 200) {
-                    this.$emit('projectDeleted', this.projectId);
-                    this.$notify({
-                        title: 'Succès',
-                        message: 'Projet supprimé avec succès',
-                        type: 'success'
-                    });
-                }
-            } catch (error) {
-                this.$notify({
-                    title: 'Erreur',
-                    message: 'Une erreur s\'est produite lors de la suppression du projet',
-                    type: 'error'
+        showConfirmationModal() {
+            this.showModal = true;
+        },
+        closeModal() {
+            this.showModal = false;
+        },
+        deleteProject() {
+            axios.delete(`/projects/${this.project['Id']}`)
+                .then(response => {
+                    console.log("Projet supprimé !");
+                    this.closeModal();
+                })
+                .catch(error => {
+                    console.error("Une erreur s'est produite lors de la suppression du projet", error);
                 });
-            }
         }
     }
-}
+};
 </script>
+
+<template>
+    <div>
+        <button @click="showConfirmationModal" class="inline-flex items-center px-4 py-2 bg-red-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-red-500 active:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 transition ease-in-out duration-150 m-10 float-right">Supprimer le projet</button>
+        
+        <div v-if="showModal">
+            <div class="bg-white p-5 rounded shadow-md">
+                <h2>Confirmation de suppression</h2>
+                <p>Êtes-vous sûr de vouloir supprimer ce projet ?</p>
+                <div class="flex flex-row justify-around px-6 py-4 bg-gray-100 text-end">
+                    <button @click="deleteProject" class="inline-flex items-center px-4 py-2 bg-red-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-red-500 active:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 transition ease-in-out duration-150">Supprimer</button>
+                    <button @click="closeModal" class="inline-flex items-center px-4 py-2 bg-white border border-gray-300 rounded-md font-semibold text-xs text-gray-700 uppercase tracking-widest shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:opacity-25 transition ease-in-out duration-150">Annuler</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>

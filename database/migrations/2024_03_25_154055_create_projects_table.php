@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('title', 55);
             $table->text('description')->nullable();
             $table->foreignId('status_id')->constrained();
+            $table->foreignId('team_id')->constrained();
             $table->timestamps();
         });
     }
