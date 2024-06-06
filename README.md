@@ -9,14 +9,6 @@ Ceci est un projet consistant à concevoir un logiciel permettant de gérer les 
 - Kevin LEBEAU : <https://github.com/kevmorlo>
 - Augustin DUVAL : <https://github.com/Flys3r>
 
-### Langages utilisés
-
-----------------------------
-
-- PHP
-- HTML
-- CSS
-
 ### Framework utilisés
 
 - Laravel
@@ -27,9 +19,9 @@ Ceci est un projet consistant à concevoir un logiciel permettant de gérer les 
 
 ### Prérequis
 
-- Laravel
 - Composer (Laravel)
 - Node
+- Un serveur web Apache MySQL/MariaDB et PHP 8.2
 
 ### Installation
 
