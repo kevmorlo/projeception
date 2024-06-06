@@ -1,5 +1,5 @@
 <script>
-import { usePage, Link } from '@inertiajs/inertia-vue3';
+import { Link } from '@inertiajs/inertia-vue3';
 import AppLayout from '@/Layouts/AppLayout.vue';
 import ApplicationLogo from '@/Components/ApplicationLogo.vue';
 import Footer from '@/Components/Footer.vue';
@@ -11,11 +11,14 @@ export default {
         Link,
         Footer,
     },
-    setup() {
-        const { projects } = usePage().props;
 
+    props: {
+        projects: Array,
+    },
+
+    setup(props) {
         return {
-            projects,
+            projects: props.projects,
         };
     },
 };
@@ -47,10 +50,11 @@ export default {
                     </div>
 
                     <ul>
-                        <li v-for="project in projects" :key="project.id" class="py-4 flex justify-between items-center">
-                            <Link :href="route('projects.show', project.id)" class="flex items-center">
+                        <li v-for="project in projects" :key="project['Id']" class="py-4 flex justify-between items-center">
+                            <Link :href="route('projects.show', project['Id'])" class="flex items-center">
                                 <h2 class="ml-4 text-sm font-medium text-gray-900">{{ project['Title'] }}</h2>
                                 <span class="ml-4 text-xs font-medium text-gray-900">{{ project['Team'] }}</span>
+                                <span class="ml-4 text-xs font-medium text-gray-900">{{ project['Description'] }}</span>
                             </Link>
                         </li>
                     </ul>
