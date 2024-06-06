@@ -34,7 +34,7 @@ export default {
                 if (response && response.data) {
                     Inertia.visit(`/projects/${response.data.id}`);
                 } else {
-                    throw new Error('La réponse du serveur est vide');
+                    errorMessage.value = 'La réponse du serveur est vide';
                 }
             } catch (error) {
                 console.error(error);

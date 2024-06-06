@@ -25,18 +25,18 @@ createInertiaApp({
 });
 
 // Gestion des erreurs HTTP
-axios.interceptors.response.use(response => response, error => {
-    if (error.response) {
-        return Inertia.visit('/error', { 
-            data: { 
-                code: error.response.status, 
-                message: error.response.data.message 
-            } 
-        });
-    }
+// axios.interceptors.response.use(response => response, error => {
+//     if (error.response) {
+//         return Inertia.visit('/error', { 
+//             data: { 
+//                 code: error.response.status, 
+//                 message: error.response.data.message 
+//             } 
+//         });
+//     }
 
-    return Promise.reject(error);
-});
+//     return Promise.reject(error);
+// });
 
 // Gestion de la protection XSRF
 let token = document.head.querySelector('meta[name="csrf-token"]');

@@ -70,7 +70,10 @@ class ProjectController extends Controller
                 $project->save();
 
                 Log::info('Projet créé avec succès.' . $project->id);
-                return response()->json(['id' => $project->id]);
+                return response()->json([
+                    'info' => 'Projet créé avec succès.',
+                    'id' => $project->id
+                ]);
             }
         } catch (\Exception $e) {
             Log::error('Une erreur s\'est produite lors de la création du projet. ' . $request . $e);
@@ -94,7 +97,8 @@ class ProjectController extends Controller
                         'Title' => $project->title,
                         'Description' => $project->description,
                         'Team' => $project->team->name,
-                        'TeamId' => $project->team_id
+                        'TeamId' => $project->team_id,
+                        'StatusId' => $project->status_id,
                     ];
                 })->first();
                 return inertia('Projects/Show', [
@@ -102,7 +106,7 @@ class ProjectController extends Controller
                 ]);
             } catch (\Exception $e) {
                 Log::error('Une erreur s\'est produite lors de l\'affichage du projet.' . $e);
-                return back()->with('error', 'Une erreur s\'est produite lors de l\'affichage du projet.');
+                return response()->json(['error' => 'Une erreur s\'est produite lors de l\'affichage du projet.'], 500);
             }
         }
     }
@@ -112,19 +116,25 @@ class ProjectController extends Controller
      */
     public function update(Request $request, Project $project)
     {
-        if (!auth()->user()->hasTeamPermission($project->team_id, 'update')) {
+        $team = Team::find($project->team_id);
+        if (!auth()->user()->hasTeamPermission($team, 'update')) {
             abort(403);
         } else {
             try {
                 $project->title = $request->input('title');
                 $project->description = $request->input('description');
+                $project->status_id = $request->input('status_id');
                 $project->save();
 
                 Log::info('Projet mis à jour avec succès.' . $project->id);
-                return back()->with('success', 'Projet mis à jour avec succès.');
+                return response()->json([
+                    'info' => 'Projet mis à jour avec succès.'
+                ]);
             } catch (\Exception $e) {
-                Log::error('Une erreur s\'est produite lors de la mise à jour du projet. ' . $e);
-                return back()->with('error', 'Une erreur s\'est produite lors de la mise à jour du projet.');
+                Log::error('Une erreur s\'est produite lors de la mise à jour du projet. ' . $request . $e);
+                return response()->json([
+                    'error' => 'Une erreur s\'est produite lors de la mise à jour du projet.'
+                ], 500);
             }
         }
     }
@@ -135,17 +145,22 @@ class ProjectController extends Controller
     public function destroy(Project $project)
     {
         try {
-            if (!auth()->user()->hasTeamPermission($project->team_id, 'delete')) {
+            $team = Team::find($project->team_id);
+            if (!auth()->user()->hasTeamPermission($team, 'delete')) {
                 abort(403);
             } else {
                 $project->delete();
 
                 Log::info('Projet supprimé avec succès.' . $project->id);
-                return back()->with('success', 'Projet supprimé avec succès.');
+                return response()->json([
+                    'info' => 'Projet supprimé avec succès.'
+                ]);
             }
         } catch (\Exception $e) {
             Log::error('Une erreur s\'est produite lors de la suppression du projet. ' . $e);
-            return back()->with('error', 'Une erreur s\'est produite lors de la suppression du projet.');
+            return response()->json([
+                'error' => 'Une erreur s\'est produite lors de la suppression du projet.'
+            ], 500);
         }
     }
 }

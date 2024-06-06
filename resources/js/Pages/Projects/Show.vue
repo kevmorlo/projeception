@@ -1,4 +1,5 @@
 <script>
+    import { ref } from 'vue';
     import AppLayout from '@/Layouts/AppLayout.vue';
     import ApplicationLogo from '@/Components/ApplicationLogo.vue';
     import Footer from '@/Components/Footer.vue';
@@ -13,27 +14,48 @@
             Link,
             Delete,
         },
+        setup() {
+            const errorMessage = ref(null);
+
+            return {
+                errorMessage,
+            };
+        },
+
         data() {
             return {
                 project: this.$page.props.project,
+                errorMessage: null,
             };
         },
+
         methods: {
             async updateProject() {
             try {
-                const response = await this.$inertia.get(`/projects/${this.project['Id']}`);
-                this.$router.push(`/projects/${this.project['Id']}`);
+                await this.$inertia.put(`/projects/${this.project['Id']}`, 
+                    {
+                        title: this.project['Title'],
+                        description: this.project['Description'],
+                        status_id: this.project['StatusId'],
+                    }
+                ).then(({ props }) => {
+                    if (props.info === 'Projet mis à jour avec succès.') {
+                        this.$inertia.reload({ only: ['project'] });
+                    } else {
+                        this.errorMessage = 'Une erreur inattendue s\'est produite lors de la mise à jour.';
+                    }
+                });
             } catch (error) {
-                console.error(error);
+                errorMessage.value = 'Une erreur inattendue s\'est produite lors de la mise à jour.';
             }
         }
         },
+
         async created() {
             try {
-                await this.$inertia.get(`/projects/${this.project['Id']}`);
                 this.project = this.$page.props.project;
             } catch (error) {
-                console.error(error);
+                errorMessage.value = 'Une erreur inattendue s\'est produite lors de la récupération du projet.';
             }
         }
     }
@@ -66,18 +88,27 @@
                                     <input v-model="project['Title']" id="title" type="text" class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm mt-1 block w-full">
                                 </div>
                                 <div class="col-span-6 sm:col-span-4">
-                                    <label for="id" class="block font-medium text-sm text-gray-700">Identifiant</label>
-                                    <input type="text" :value="project['Id']" class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm mt-1 block w-full" disabled>
+                                    <label for="project-id" class="block font-medium text-sm text-gray-700">Identifiant</label>
+                                    <input type="text" v-model="project['Id']" id="project-id" class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm mt-1 block w-full" disabled>
                                 </div>
                                 <div class="col-span-6 sm:col-span-4">
-                                    <label for="team" class="block font-medium text-sm text-gray-700">Equipe</label>
-                                    <Link :href="route('teams.show', project['TeamId'])">
-                                        <input v-model="project['Team']" id="team" type="text" class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm mt-1 block w-full">
+                                    <label class="block font-medium text-sm text-gray-700">Equipe</label>
+                                    <Link :href="route('teams.show', project['TeamId'])" class="cursor-pointer">
+                                        <button type="button" class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-md mt-1 py-2 block w-full text-left transition-colors duration-200 hover:bg-gray-200">
+                                            <span class="ml-2">{{ project['Team'] }}</span>
+                                        </button>
                                     </Link>
                                 </div>
                                 <div class="col-span-6 sm:col-span-4">
                                     <label for="description" class="block font-medium text-sm text-gray-700">Description</label>
                                     <input v-model="project['Description']" id="description" type="text" class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm mt-1 block w-full">
+                                </div>
+                                <div class="col-span-6 sm:col-span-4">
+                                    <label for="status_id" class="block font-medium text-sm text-gray-700">Statut</label>
+                                    <select v-model="project['StatusId']" id="status_id" class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm mt-1 block w-full">
+                                        <option value="1">Privé</option>
+                                        <option value="2">Public</option>
+                                    </select>
                                 </div>
                             </div>
                             <div v-if="errorMessage" class="text-red-500">{{ errorMessage }}</div>
@@ -86,7 +117,7 @@
                             </div>
                         </div>
                     </form>
-                    <Delete />
+                    <Delete :project="project" />
                 </div>
             </div>
         </div>
