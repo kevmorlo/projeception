@@ -23,6 +23,7 @@ export default {
                 title: '',
                 team_id: teamId,
                 description: '',
+                status_id: 1,
             });
         const errorMessage = ref(null);
 
@@ -82,6 +83,13 @@ export default {
                                 <div class="col-span-6 sm:col-span-4">
                                     <label for="description" class="block font-medium text-sm text-gray-700">Description</label>
                                     <input v-model="project.description" id="description" type="text" class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm mt-1 block w-full">
+                                </div>
+                                <div class="col-span-6 sm:col-span-4">
+                                    <label for="status_id" class="block font-medium text-sm text-gray-700">Statut</label>
+                                    <select v-model="project.status_id" id="status_id" class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm mt-1 block w-full">
+                                        <option value="1">Privé</option>
+                                        <option value="2">Public</option>
+                                    </select>
                                 </div>
                             </div>
                             <div v-if="errorMessage" class="text-red-500">{{ errorMessage }}</div>
