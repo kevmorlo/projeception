@@ -64,12 +64,12 @@ class ProjectController extends Controller
                 $project = new Project();
                 $project->title = $request->json()->get('title');
                 $project->description = $request->json()->get('description');
-                $project->status_id = 1;
+                $project->status_id = $request->json()->get('status_id');
                 $project->team_id = $team_id;
 
                 $project->save();
 
-                Log::info('Projet créé avec succès.' . $project->id);
+                Log::info('Projet créé avec succès. ' . $project->id);
                 return response()->json([
                     'info' => 'Projet créé avec succès.',
                     'id' => $project->id
@@ -83,6 +83,12 @@ class ProjectController extends Controller
 
     /**
      * Display the specified project.
+     * Check if the authenticated user has the permission to view the project.
+     * If the user has the permission, return the inertia view for the project.
+     * If an error occurs, log the error and return a JSON response with an error message.
+     * @param  \App\Models\Project  $project
+     * @return \Inertia\Response
+     * @throws \Exception
      */
     public function show(Project $project)
     {
@@ -113,6 +119,14 @@ class ProjectController extends Controller
 
     /**
      * Update the specified project in storage.
+     * Check if the authenticated user has the permission to update the project.
+     * If the user has the permission, update the project and save it in the database.
+     * Return a JSON response with a success message.
+     * If an error occurs, log the error and return a JSON response with an error message.
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\Project  $project
+     * @return \Illuminate\Http\Response
+     * @throws \Exception
      */
     public function update(Request $request, Project $project)
     {
@@ -126,7 +140,7 @@ class ProjectController extends Controller
                 $project->status_id = $request->input('status_id');
                 $project->save();
 
-                Log::info('Projet mis à jour avec succès.' . $project->id);
+                Log::info('Projet mis à jour avec succès. ' . $project->id);
                 return response()->json([
                     'info' => 'Projet mis à jour avec succès.'
                 ]);
@@ -141,6 +155,13 @@ class ProjectController extends Controller
 
     /**
      * Remove the specified project from storage.
+     * Check if the authenticated user has the permission to delete the project.
+     * If the user has the permission, delete the project from the database.
+     * Return a JSON response with a success message.
+     * If an error occurs, log the error and return a JSON response with an error message.
+     * @param  \App\Models\Project  $project
+     * @return \Illuminate\Http\Response
+     * @throws \Exception
      */
     public function destroy(Project $project)
     {
@@ -151,7 +172,7 @@ class ProjectController extends Controller
             } else {
                 $project->delete();
 
-                Log::info('Projet supprimé avec succès.' . $project->id);
+                Log::info('Projet supprimé avec succès. ' . $project->id);
                 return response()->json([
                     'info' => 'Projet supprimé avec succès.'
                 ]);

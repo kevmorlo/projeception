@@ -5,6 +5,7 @@
     import Footer from '@/Components/Footer.vue';
     import Delete from './Delete.vue';
     import { Link } from '@inertiajs/vue3';
+    import { Inertia } from '@inertiajs/inertia';
 
     export default {
         components: {
@@ -40,7 +41,7 @@
                     }
                 ).then(({ props }) => {
                     if (props.info === 'Projet mis à jour avec succès.') {
-                        this.$inertia.reload({ only: ['project'] });
+                        Inertia.visit('/projects');
                     } else {
                         this.errorMessage = 'Une erreur inattendue s\'est produite lors de la mise à jour.';
                     }
