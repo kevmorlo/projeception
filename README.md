@@ -2,14 +2,16 @@
 
 Ceci est un projet consistant à concevoir un logiciel permettant de gérer les différents projets d'Open Innovation des étudiants de l'EPSI
 
-### Groupe sur le projet
+## Accès
 
-----------------------------
+Le projet est accessible en production ici : [https://projeception.lery.cc/](https://projeception.lery.cc/)
+
+## Groupe sur le projet
 
 - Kevin LEBEAU : <https://github.com/kevmorlo>
 - Augustin DUVAL : <https://github.com/Flys3r>
 
-### Framework utilisés
+## Framework utilisés
 
 - Laravel
 - Tailwind
