@@ -25,4 +25,9 @@ class Project extends Model
     {
         return $this->belongsTo(Status::class);
     }
+
+    public function logs()
+    {
+        return $this->hasMany(Log::class);
+    }
 }

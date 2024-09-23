@@ -61,6 +61,8 @@ Route::delete('/projects/{project}', [ProjectController::class, 'destroy'])->nam
 Route::get('/teams/{team}/projects', [App\Http\Controllers\TeamProjectController::class, 'index'])->name('team.projects')->middleware('auth:sanctum');
 
 
+Route::get('/logs/projects', [App\Http\Controllers\ProjectLogController::class, 'index'])->name('logs.projects')->middleware('auth:sanctum'/*, 'checkUserRole'*/);
+
 
 // Route::get('/error', function (Request $request) {
 //     return Inertia::render('Errors/Error', $request->all());
