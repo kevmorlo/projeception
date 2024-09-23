@@ -36,8 +36,12 @@ composer install
 npm install
 ```
 3. Copiez le fichier ```.env.example``` et renommez le ```.env```.
-4. Modifiez les données de celui-ci par celles qui correspondent à votre environnement.
-5. Lancez le serveur avec artisan et node, pensez à lancer votre environnement web (WAMP, LAMP etc.) : 
+4. Ajoutez une clé de chiffrement à votre application : 
+```bash
+php artisan key:generate
+```
+5. Modifiez les données de celui-ci par celles qui correspondent à votre environnement.
+6. Lancez le serveur avec artisan et node, pensez à lancer votre environnement web (WAMP, LAMP etc.) : 
 ```bash
 php artisan serve
 ```
