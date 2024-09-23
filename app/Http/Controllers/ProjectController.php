@@ -15,21 +15,26 @@ class ProjectController extends Controller
      */
     public function index()
     {
-        $projects = Project::with('team')->where('status_id', 2)->get();
+        try {
+            $projects = Project::with('team')->where('status_id', 2)->get();
+            
+            $data = $projects->map(function ($project) {
+                return [
+                'Id' => $project->id,
+                'Title' => $project->title,
+                'Description' => $project->description,
+                'Team' => $project->team->name,
+                'TeamId' => $project->team_id
+                ];
+            });
         
-        $data = $projects->map(function ($project) {
-            return [
-            'Id' => $project->id,
-            'Title' => $project->title,
-            'Description' => $project->description,
-            'Team' => $project->team->name,
-            'TeamId' => $project->team_id
-            ];
-        });
-    
-        return inertia('Projects/Index', [
-            'projects' => $data
-        ]);
+            return inertia('Projects/Index', [
+                'projects' => $data
+            ]);
+        } catch (\Exception $e) {
+            Log::error($e->getMessage());
+            return response()->json(['error' => 'Une erreur est survenue lors de l\'affichage des projets. '], 500);
+        }
     }
 
     /**
@@ -62,12 +67,21 @@ class ProjectController extends Controller
                 abort(403, 'L\'utilisateur n\'a pas la permission de créer un projet pour cette équipe.');
             } else {
                 $project = new Project();
+                $log = new \App\Models\Log(); // Laisser le namespace complet pour éviter les conflits avec Log
+
                 $project->title = $request->json()->get('title');
                 $project->description = $request->json()->get('description');
                 $project->status_id = $request->json()->get('status_id');
                 $project->team_id = $team_id;
 
                 $project->save();
+
+                $log->content = 'Projet créé avec succès. ';
+                $log->project_id = $project->id;
+                $log->team_id = $team_id;
+                $log->user_id = auth()->user()->id;
+
+                $log->save();
 
                 Log::info('Projet créé avec succès. ' . $project->id);
                 return response()->json([
@@ -140,6 +154,15 @@ class ProjectController extends Controller
                 $project->status_id = $request->input('status_id');
                 $project->save();
 
+                $log = new \App\Models\Log(); // Laisser le namespace complet pour éviter les conflits avec Log
+
+                $log->content = 'Projet mis à jour avec succès. ';
+                $log->project_id = $project->id;
+                $log->team_id = $project->team_id;
+                $log->user_id = auth()->user()->id;
+
+                $log->save();
+
                 Log::info('Projet mis à jour avec succès. ' . $project->id);
                 return response()->json([
                     'info' => 'Projet mis à jour avec succès.'
@@ -171,6 +194,15 @@ class ProjectController extends Controller
                 abort(403);
             } else {
                 $project->delete();
+
+                $log = new \App\Models\Log(); // Laisser le namespace complet pour éviter les conflits avec Log
+
+                $log->content = 'Projet supprimé avec succès. ';
+                $log->project_id = $project->id;
+                $log->team_id = $project->team_id;
+                $log->user_id = auth()->user()->id;
+
+                $log->save();
 
                 Log::info('Projet supprimé avec succès. ' . $project->id);
                 return response()->json([
