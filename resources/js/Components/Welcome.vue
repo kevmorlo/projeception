@@ -1,14 +1,6 @@
 <script setup>
 import ApplicationLogo from '@/Components/ApplicationLogo.vue';
-</script>
-
-<script>
 import { Link } from '@inertiajs/vue3';
-export default {
-    components: {
-        Link,
-    },
-};
 </script>
 
 <template>
