@@ -2,20 +2,22 @@
 
 Ceci est un projet consistant à concevoir un logiciel permettant de gérer les différents projets d'Open Innovation des étudiants de l'EPSI
 
-## Accès
+<!-- ## Accès
 
-Le projet est accessible en production ici : [https://projeception.lery.cc/](https://projeception.lery.cc/)
+Le projet est accessible en production ici : [https://projeception.lery.cc/](https://projeception.lery.cc/) -->
 
 ## Groupe sur le projet
 
 - Kevin LEBEAU : <https://github.com/kevmorlo>
 - Augustin DUVAL : <https://github.com/Flys3r>
+- Wesley GOARANT : <https://github.com/Wesleydu29>
+- Diana DUMITRESCU : <https://github.com/io2944>
 
-## Framework utilisés
+## Frameworks utilisés
 
 - Laravel
 - Tailwind
-- Vue.Js
+- Vue.js
 
 ## Installation
 
@@ -23,7 +25,8 @@ Le projet est accessible en production ici : [https://projeception.lery.cc/](htt
 
 - Composer (Laravel)
 - Node
-- Un serveur web Apache MySQL/MariaDB et PHP 8.2
+- Apache 
+- MySQL 8.1^/MariaDB 10.10.2^ et PHP 8.1^
 
 ### Installation
 
