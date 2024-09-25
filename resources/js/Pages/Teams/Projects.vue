@@ -40,6 +40,10 @@ export default {
                     <div class="p-6 lg:p-8 bg-white border-b border-gray-200">
                         <div class="flex justify-between items-center">
                             <ApplicationLogo class="block h-12 w-auto" />
+
+                            <Link :href="route('projects.index')" class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 focus:bg-gray-700 active:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150">
+                                Créer un projet
+                            </Link>
                         </div>
                         <h1 class="mt-8 text-2xl font-medium text-gray-900">
                             Projets de {{ $page.props.teamName }}

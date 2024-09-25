@@ -52,6 +52,7 @@ class ProjectController extends Controller
      * Store a newly created project in storage.
      * Check if the authenticated user has the permission to create a project.
      * If the user has the permission, create a new project and save it in the database.
+     * Log the creation of the project.
      * Return a JSON response with the project ID for the front-end.
      * If an error occurs, log the error and return a JSON response with an error message.
      * @param  \Illuminate\Http\Request  $request
@@ -135,6 +136,7 @@ class ProjectController extends Controller
      * Update the specified project in storage.
      * Check if the authenticated user has the permission to update the project.
      * If the user has the permission, update the project and save it in the database.
+     * Log the update of the project.
      * Return a JSON response with a success message.
      * If an error occurs, log the error and return a JSON response with an error message.
      * @param  \Illuminate\Http\Request  $request
@@ -179,7 +181,8 @@ class ProjectController extends Controller
     /**
      * Remove the specified project from storage.
      * Check if the authenticated user has the permission to delete the project.
-     * If the user has the permission, delete the project from the database.
+     * If the user has the permission, log the deletion of the project.
+     * Delete the project.
      * Return a JSON response with a success message.
      * If an error occurs, log the error and return a JSON response with an error message.
      * @param  \App\Models\Project  $project
@@ -193,8 +196,7 @@ class ProjectController extends Controller
             if (!auth()->user()->hasTeamPermission($team, 'delete')) {
                 abort(403);
             } else {
-                $project->delete();
-
+                // On log avant la suppression pour avoir les informations du projet
                 $log = new \App\Models\Log(); // Laisser le namespace complet pour éviter les conflits avec Log
 
                 $log->content = 'Projet supprimé avec succès. ';
@@ -203,6 +205,8 @@ class ProjectController extends Controller
                 $log->user_id = auth()->user()->id;
 
                 $log->save();
+
+                $project->delete();
 
                 Log::info('Projet supprimé avec succès. ' . $project->id);
                 return response()->json([
