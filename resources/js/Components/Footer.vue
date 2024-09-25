@@ -12,6 +12,7 @@
         components: {
             Link,
         },
+        
         data() {
             return {
                 laravelVersion: '',
@@ -19,6 +20,12 @@
                 vueVersion: version,
             };
         },
+
+        /**
+         * Fetch the Laravel and PHP versions from the API when the component is created.
+         * If an error occurs, it will be logged to the console.
+         * @returns {Promise<void>}
+         */
         async created() {
             try {
                 const response = await axios.get('/api/versions')
@@ -36,7 +43,7 @@
         <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center">
                 <div class="flex space-x-6">
-                    <span class="text-gray-500">© 2024 My Projeception. Tous droits réservés.</span>
+                    <span class="text-gray-500">© 2024 My Projeception. Distribué sous licence MIT.</span>
                     <Link :href="route('terms')">Mentions légales</Link>
                     <Link :href="route('policy')">Politique de confidentialité</Link>
                     <span class="text-gray-500">
