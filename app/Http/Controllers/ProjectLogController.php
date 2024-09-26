@@ -9,6 +9,9 @@ class ProjectLogController extends Controller
 {
     /**
      * Display a listing of the resource.
+     * Tries to get all logs with their project
+     * If an exception occurs, it logs the error and returns a 500 response
+     * @return \Inertia\Response
      */
     public function index()
     {
@@ -19,7 +22,7 @@ class ProjectLogController extends Controller
             ]);
         } catch (\Exception $e) {
             Log::error($e->getMessage());
-            return response()->json(['error' => 'Une erreur est survenue lors de l\'affichage des logs. '], 500);
+            return response()->json(['error' => 'Une erreur est survenue lors de l\'affichage des logs. '], 500);   
         }  
     }
 }
