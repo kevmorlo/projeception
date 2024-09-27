@@ -82,7 +82,7 @@ export default {
                                 </div>
                                 <div class="col-span-6 sm:col-span-4">
                                     <label for="description" class="block font-medium text-sm text-gray-700">Description</label>
-                                    <input v-model="project.description" id="description" type="text" class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm mt-1 block w-full">
+                                    <input v-model="project.description" id="description" type="text" class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm mt-1 block w-full" required>
                                 </div>
                                 <div class="col-span-6 sm:col-span-4">
                                     <label for="status_id" class="block font-medium text-sm text-gray-700">Statut</label>

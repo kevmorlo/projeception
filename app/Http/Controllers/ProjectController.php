@@ -12,6 +12,10 @@ class ProjectController extends Controller
 {
     /**
      * Display a listing of the projects.
+     * Return the inertia view for the projects.
+     * If an error occurs, log the error and return a JSON response with an error message.
+     * @return \Inertia\Response
+     * @throws \Exception
      */
     public function index()
     {
