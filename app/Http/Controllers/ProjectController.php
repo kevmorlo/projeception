@@ -6,10 +6,13 @@ use App\Models\Project;
 use App\Models\Team;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
-
+use App\Constants\HttpStatusCodes;
+use App\Constants\StatusMessages;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 class ProjectController extends Controller
 {
+    use AuthorizesRequests; // Implémentation des méthodes authorize() et deny()
     /**
      * Display a listing of the projects.
      */
@@ -20,11 +23,11 @@ class ProjectController extends Controller
             
             $data = $projects->map(function ($project) {
                 return [
-                'Id' => $project->id,
-                'Title' => $project->title,
-                'Description' => $project->description,
-                'Team' => $project->team->name,
-                'TeamId' => $project->team_id
+                    'Id' => $project->id,
+                    'Title' => $project->title,
+                    'Description' => $project->description,
+                    'Team' => $project->team->name,
+                    'TeamId' => $project->team_id
                 ];
             });
         
@@ -33,7 +36,7 @@ class ProjectController extends Controller
             ]);
         } catch (\Exception $e) {
             Log::error($e->getMessage());
-            return response()->json(['error' => 'Une erreur est survenue lors de l\'affichage des projets. '], 500);
+            return response()->json(['error' => StatusMessages::DISPLAY_ERROR], HttpStatusCodes::HTTP_INTERNAL_SERVER_ERROR);
         }
     }
 
@@ -64,35 +67,29 @@ class ProjectController extends Controller
         try {
             $team_id = $request->json()->get('team_id');
             $team = Team::find($team_id);
-            if (!auth()->user()->hasTeamPermission($team, 'create')) {
-                abort(403, 'L\'utilisateur n\'a pas la permission de créer un projet pour cette équipe.');
-            } else {
-                $project = new Project();
-                $log = new \App\Models\Log(); // Laisser le namespace complet pour éviter les conflits avec Log
+            $this->authorize('create', [Project::class, $team]);
+            $project = new Project();
+            $log = new \App\Models\Log(); // Laisser le namespace complet pour éviter les conflits avec Log
 
-                $project->title = $request->json()->get('title');
-                $project->description = $request->json()->get('description');
-                $project->status_id = $request->json()->get('status_id');
-                $project->team_id = $team_id;
+            $project->title = $request->json()->get('title');
+            $project->description = $request->json()->get('description');
+            $project->status_id = $request->json()->get('status_id');
+            $project->team_id = $team_id;
 
-                $project->save();
+            $project->save();
 
-                $log->content = 'Projet créé avec succès. ';
-                $log->project_id = $project->id;
-                $log->team_id = $team_id;
-                $log->user_id = auth()->user()->id;
+            $this->createLog($project, StatusMessages::CREATE_SUCCESS);
 
-                $log->save();
+            $log->save();
 
-                Log::info('Projet créé avec succès. ' . $project->id);
-                return response()->json([
-                    'info' => 'Projet créé avec succès.',
-                    'id' => $project->id
-                ]);
-            }
+            Log::info(StatusMessages::CREATE_SUCCESS . $project->id);
+            return response()->json([
+                'info' => 'Projet créé avec succès.',
+                'id' => $project->id
+            ], HttpStatusCodes::HTTP_CREATED);
         } catch (\Exception $e) {
-            Log::error('Une erreur s\'est produite lors de la création du projet. ' . $request . $e);
-            return response()->json(['error' => 'Une erreur s\'est produite lors de la création du projet.'], 500);
+        Log::error(StatusMessages::CREATE_ERROR . " " . $request . $e);
+        return response()->json(['error' => StatusMessages::CREATE_ERROR], HttpStatusCodes::HTTP_INTERNAL_SERVER_ERROR);
         }
     }
 
@@ -108,27 +105,24 @@ class ProjectController extends Controller
     public function show(Project $project)
     {
         $team = Team::find($project->team_id);
-        if (!auth()->user()->hasTeamPermission($team, 'view')) {
-            abort(403, 'L\'utilisateur n\'a pas la permission de créer un projet pour cette équipe.');
-        } else {
-            try {
-                $data = Project::with('team')->where('id', $project->id)->get()->map(function ($project) {
-                    return [
-                        'Id' => $project->id,
-                        'Title' => $project->title,
-                        'Description' => $project->description,
-                        'Team' => $project->team->name,
-                        'TeamId' => $project->team_id,
-                        'StatusId' => $project->status_id,
-                    ];
-                })->first();
-                return inertia('Projects/Show', [
-                    'project' => $data
-                ]);
-            } catch (\Exception $e) {
-                Log::error('Une erreur s\'est produite lors de l\'affichage du projet.' . $e);
-                return response()->json(['error' => 'Une erreur s\'est produite lors de l\'affichage du projet.'], 500);
-            }
+        $this->authorize('view', $project);
+        try {
+            $data = Project::with('team')->where('id', $project->id)->get()->map(function ($project) {
+                return [
+                    'Id' => $project->id,
+                    'Title' => $project->title,
+                    'Description' => $project->description,
+                    'Team' => $project->team->name,
+                    'TeamId' => $project->team_id,
+                    'StatusId' => $project->status_id,
+                ];
+            })->first();
+            return inertia('Projects/Show', [
+                'project' => $data
+            ]);
+        } catch (\Exception $e) {
+            Log::error(StatusMessages::DISPLAY_ERROR . " " . $e);
+            return response()->json(['error' => StatusMessages::DISPLAY_ERROR], HttpStatusCodes::HTTP_INTERNAL_SERVER_ERROR);
         }
     }
 
@@ -147,34 +141,24 @@ class ProjectController extends Controller
     public function update(Request $request, Project $project)
     {
         $team = Team::find($project->team_id);
-        if (!auth()->user()->hasTeamPermission($team, 'update')) {
-            abort(403);
-        } else {
-            try {
-                $project->title = $request->input('title');
-                $project->description = $request->input('description');
-                $project->status_id = $request->input('status_id');
-                $project->save();
+        $this->authorize('update', $project);
+        try {
+            $project->title = $request->input('title');
+            $project->description = $request->input('description');
+            $project->status_id = $request->input('status_id');
+            $project->save();
 
-                $log = new \App\Models\Log(); // Laisser le namespace complet pour éviter les conflits avec Log
+            $this->createLog($project, StatusMessages::UPDATE_SUCCESS);
 
-                $log->content = 'Projet mis à jour avec succès. ';
-                $log->project_id = $project->id;
-                $log->team_id = $project->team_id;
-                $log->user_id = auth()->user()->id;
-
-                $log->save();
-
-                Log::info('Projet mis à jour avec succès. ' . $project->id);
-                return response()->json([
-                    'info' => 'Projet mis à jour avec succès.'
-                ]);
-            } catch (\Exception $e) {
-                Log::error('Une erreur s\'est produite lors de la mise à jour du projet. ' . $request . $e);
-                return response()->json([
-                    'error' => 'Une erreur s\'est produite lors de la mise à jour du projet.'
-                ], 500);
-            }
+            Log::info(StatusMessages::UPDATE_SUCCESS . " " . $project->id);
+            return response()->json([
+                'info' => StatusMessages::UPDATE_SUCCESS
+            ], HttpStatusCodes::HTTP_OK);
+        } catch (\Exception $e) {
+            Log::error(StatusMessages::UPDATE_ERROR . " " . $request . $e);
+            return response()->json([
+                'error' => StatusMessages::UPDATE_ERROR
+            ], HttpStatusCodes::HTTP_INTERNAL_SERVER_ERROR);
         }
     }
 
@@ -191,33 +175,41 @@ class ProjectController extends Controller
      */
     public function destroy(Project $project)
     {
+        $this->authorize('delete', $project);
+
         try {
             $team = Team::find($project->team_id);
-            if (!auth()->user()->hasTeamPermission($team, 'delete')) {
-                abort(403);
-            } else {
-                // On log avant la suppression pour avoir les informations du projet
-                $log = new \App\Models\Log(); // Laisser le namespace complet pour éviter les conflits avec Log
+            
+            $project->delete();
 
-                $log->content = 'Projet supprimé avec succès. ';
-                $log->project_id = $project->id;
-                $log->team_id = $project->team_id;
-                $log->user_id = auth()->user()->id;
-
-                $log->save();
-
-                $project->delete();
-
-                Log::info('Projet supprimé avec succès. ' . $project->id);
-                return response()->json([
-                    'info' => 'Projet supprimé avec succès.'
-                ]);
-            }
-        } catch (\Exception $e) {
-            Log::error('Une erreur s\'est produite lors de la suppression du projet. ' . $e);
+            Log::info(StatusMessages::DELETE_SUCCESS . " " . $project->id);
             return response()->json([
-                'error' => 'Une erreur s\'est produite lors de la suppression du projet.'
-            ], 500);
+                'info' => StatusMessages::DELETE_SUCCESS
+            ], HttpStatusCodes::HTTP_NO_CONTENT);
+
+        } catch (\Exception $e) {
+            Log::error(StatusMessages::DELETE_ERROR . " " . $e);
+            return response()->json([
+                'error' => StatusMessages::DELETE_ERROR
+            ], HttpStatusCodes::HTTP_INTERNAL_SERVER_ERROR);
         }
+    }
+
+        /**
+     * Create a log entry for the specified project.
+     * @param  \App\Models\Project  $project
+     * @param  string  $message
+     * @return void
+     */
+    private function createLog(Project $project, string $message)
+    {
+        $log = new \App\Models\Log(); // Laisser le namespace complet pour éviter les conflits avec Log
+
+        $log->content = $message;
+        $log->project_id = $project->id;
+        $log->team_id = $project->team_id;
+        $log->user_id = auth()->user()->id;
+
+        $log->save();
     }
 }
