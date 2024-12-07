@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use App\Http\Controllers\ProjectController;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 
 Route::get('/', function () {
     return Inertia::render('Welcome', [
