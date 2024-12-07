@@ -80,8 +80,6 @@ class ProjectController extends Controller
 
             $this->createLog($project, StatusMessages::CREATE_SUCCESS);
 
-            $log->save();
-
             Log::info(StatusMessages::CREATE_SUCCESS . $project->id);
             return response()->json([
                 'info' => 'Projet créé avec succès.',
