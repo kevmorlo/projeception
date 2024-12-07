@@ -28,12 +28,12 @@ const logout = () => {
 </script>
 
 <template>
-    <div>
+    <div class="flex flex-col min-h-screen">
         <Head :title="title" />
 
         <Banner />
 
-        <div class="min-h-screen bg-gray-100">
+        <div class="flex flex-col bg-gray-100">
             <nav class="bg-white border-b border-gray-100">
                 <!-- Primary Navigation Menu -->
                 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -49,7 +49,11 @@ const logout = () => {
                             <!-- Navigation Links -->
                             <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                                 <NavLink :href="route('dashboard')" :active="route().current('dashboard')">
-                                    Dashboard
+                                    Tableau de bord
+                                </NavLink>
+
+                                <NavLink :href="route('projects.index')" :active="route().current('projects.index')">
+                                    Projets
                                 </NavLink>
                             </div>
                         </div>
@@ -78,6 +82,11 @@ const logout = () => {
                                             </div>
 
                                             <!-- Team Settings -->
+
+                                            <DropdownLink :href="route('team.projects', $page.props.auth.user.current_team)">
+                                                Projets de l'équipe
+                                            </DropdownLink>
+
                                             <DropdownLink :href="route('teams.show', $page.props.auth.user.current_team)">
                                                 Paramètres de l'équipe
                                             </DropdownLink>
@@ -192,7 +201,11 @@ const logout = () => {
                 <div :class="{'block': showingNavigationDropdown, 'hidden': ! showingNavigationDropdown}" class="sm:hidden">
                     <div class="pt-2 pb-3 space-y-1">
                         <ResponsiveNavLink :href="route('dashboard')" :active="route().current('dashboard')">
-                            Dashboard
+                            Tableau de bord
+                        </ResponsiveNavLink>
+
+                        <ResponsiveNavLink :href="route('projects.index')" :active="route().current('projects.index')">
+                            Projets
                         </ResponsiveNavLink>
                     </div>
 
@@ -281,7 +294,7 @@ const logout = () => {
             </header>
 
             <!-- Page Content -->
-            <main>
+            <main class="flex-auto">
                 <slot />
             </main>
         </div>
