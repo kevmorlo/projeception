@@ -67,27 +67,25 @@ class ProjectController extends Controller
         try {
             $team_id = $request->json()->get('team_id');
             $team = Team::find($team_id);
-            $this->authorize('create', [Project::class, $team]);
+            $this->authorize('create', $team);
+    
             $project = new Project();
-            $log = new \App\Models\Log(); // Laisser le namespace complet pour éviter les conflits avec Log
-
             $project->title = $request->json()->get('title');
             $project->description = $request->json()->get('description');
             $project->status_id = $request->json()->get('status_id');
             $project->team_id = $team_id;
-
             $project->save();
-
+    
             $this->createLog($project, StatusMessages::CREATE_SUCCESS);
-
+    
             Log::info(StatusMessages::CREATE_SUCCESS . $project->id);
             return response()->json([
-                'info' => 'Projet créé avec succès.',
+                'info' => StatusMessages::CREATE_SUCCESS,
                 'id' => $project->id
             ], HttpStatusCodes::HTTP_CREATED);
         } catch (\Exception $e) {
-        Log::error(StatusMessages::CREATE_ERROR . " " . $request . $e);
-        return response()->json(['error' => StatusMessages::CREATE_ERROR], HttpStatusCodes::HTTP_INTERNAL_SERVER_ERROR);
+            Log::error(StatusMessages::CREATE_ERROR . " " . $request . $e);
+            return response()->json(['error' => StatusMessages::CREATE_ERROR], HttpStatusCodes::HTTP_INTERNAL_SERVER_ERROR);
         }
     }
 
