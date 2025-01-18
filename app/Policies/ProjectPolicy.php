@@ -2,6 +2,7 @@
 namespace App\Policies;
 
 use App\Models\Project;
+use App\Models\Team;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
@@ -14,9 +15,9 @@ class ProjectPolicy
         return $user->hasTeamPermission($project->team, 'view');
     }
 
-    public function create(User $user, Project $project)
+    public function create(User $user, Team $team)
     {
-        return $user->hasTeamPermission($project->team, 'create');
+        return $user->hasTeamPermission($team, 'create');
     }
 
     public function update(User $user, Project $project)
